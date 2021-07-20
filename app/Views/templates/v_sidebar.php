@@ -61,8 +61,8 @@
                 <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Sesi Ujian:</h6>
-                        <a class="collapse-item" href="<?= base_url('SesiUjianAktif'); ?>">Sesi Ujian Aktif</a>
-                        <a class="collapse-item" href="<?= base_url('ArsipSesiUjian'); ?>">Arsip Sesi Ujian</a>
+                        <a class="collapse-item" href="<?= base_url('sesiUjianAktif'); ?>">Sesi Ujian Aktif</a>
+                        <a class="collapse-item" href="<?= base_url('sesiUjianArsip'); ?>">Arsip Sesi Ujian</a>
                     </div>
                 </div>
             </li>

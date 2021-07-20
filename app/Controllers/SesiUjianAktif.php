@@ -13,13 +13,13 @@ class SesiUjianAktif extends BaseController
 
         $data = [
             'judul' => 'Sesi Ujian',
-            'siswa' => $model->get_sesi_ujian_aktif_list()
+            'sesi' => $model->get_sesi_ujian_aktif_list()
         ];
 
         echo view('templates/v_header', $data);
         echo view('templates/v_sidebar');
         echo view('templates/v_topbar');
-        echo view('admin/sesiUjianAktif');
+        echo view('admin/v_sesiUjianAktif');
         echo view('templates/v_footer');
     }
 }

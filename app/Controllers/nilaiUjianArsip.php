@@ -3,26 +3,19 @@
 namespace App\Controllers;
 
 use CodeIgniter\Controller;
-use App\Models\M_Pertanyaan;
 
-class Pertanyaan extends BaseController
+class NilaiUjianArsip extends BaseController
 {
-    public function __construct()
-    {
-        $this->model = new M_Pertanyaan();
-    }
-
     public function index()
     {
         $data = [
-            'judul' => 'Pertanyaan',
-            'pertanyaan' => $this->model->get_pertanyaan_list()
+            'judul' => 'Arsip Nilai Ujian',
         ];
 
         echo view('templates/v_header', $data);
         echo view('templates/v_sidebar');
         echo view('templates/v_topbar');
-        echo view('admin/v_pertanyaan');
+        echo view('admin/v_nilaiUjianArsip');
         echo view('templates/v_footer');
     }
 }

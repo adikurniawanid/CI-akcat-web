@@ -33,6 +33,9 @@ $routes->setAutoRoute(true);
 // route since we don't have to scan directories.
 // $routes->get('/', 'Home::index');
 $routes->get('/', 'Home::index');
+// $routes->delete('/Kategori/(:any)', 'Kategori::deleteKategori/$1');
+// $routes->get('/kategori/(:any)', '/Kategori::index');
+
 
 /*
  * --------------------------------------------------------------------
