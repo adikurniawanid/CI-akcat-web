@@ -27,9 +27,9 @@
 
     <div class="card">
         <div class="card-body">
-            <form action="<?= base_url('Kategori'); ?>" method="POST" class="d-inline">
+            <form action="<?= base_url('Admin/Kategori'); ?>" method="POST" class="d-inline">
                 <button class="btn btn-primary mb-4">
-                    <i class=" fa fa-backward"></i>
+                    <i class=" fa fa-arrow-left"></i>
                     Kembali
                 </button>
             </form>
@@ -37,23 +37,25 @@
                 <table class="table table-sm table-bordered table-striped" id="dataTable" height="100%" width="100%" cellspacing="0">
                     <thead>
                         <tr class="text-center">
-                            <td>No</td>
-                            <td>Nama Kategori</td>
-                            <td>Bobot Nilai</td>
-                            <td>Aksi</td>
+                            <td class="col-1">No</td>
+                            <td class="col-2">Kode Kategori</td>
+                            <td class="col-6">Nama Kategori</td>
+                            <td class="col-1">Bobot Nilai</td>
+                            <td class="col-2">Aksi</td>
                         </tr>
                         <?php $i = 1 ?>
                         <?php
                         foreach ($kategori as $key) : ?>
                             <tr class="text-center ">
                                 <td><?= $i; ?></td>
+                                <td><?= $key['kode'] ?></td>
                                 <td class="text-left"><?= $key['nama']; ?></td>
                                 <td><?= $key['nilai'] ?></td>
                                 <td class="text-center">
-                                    <form action="/kategoriArsip/recoveryKategori/<?= $key['id']; ?>" method="POST" class="d-inline">
-                                        <button type="submit" class="btn btn-success btn-sm" title="Pulih" onclick="return confirm('Apakah anda ingin memulihkan kategori <?= $key['nama']; ?> ?')"><i class="fas fa-box "></i></button>
+                                    <form action="<?= base_url('Admin/Kategori/recoveryKategori'); ?>/<?= $key['id']; ?>" method="POST" class="d-inline">
+                                        <button type="submit" class="btn btn-secondary btn-sm" title="Pulih" onclick="return confirm('Apakah anda ingin memulihkan kategori <?= $key['nama']; ?> ?')"><i class="fas fa-box "></i></button>
                                     </form>
-                                    <form action="/kategoriArsip/deleteKategori/<?= $key['id']; ?>" method="POST" class="d-inline">
+                                    <form action="<?= base_url('Admin/Kategori/deleteKategoriArsip'); ?>/<?= $key['id']; ?>" method="POST" class="d-inline">
                                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin menghapus kategori <?= $key['nama']; ?> ?')" title="Hapus"><i class="fas fa-trash"></i></button>
                                     </form>
                                 </td>

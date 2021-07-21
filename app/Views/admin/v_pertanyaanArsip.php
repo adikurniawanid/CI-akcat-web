@@ -27,17 +27,12 @@
     <?php endif ?>
     <div class="card">
         <div class="card-body">
-            <div class="btn btn-primary mb-4 mr-4" data-toggle="modal" data-target="#addKategori">
-                <i class="fa fa-plus"></i>
-                Tambah Pertanyaan
-            </div>
-            <form action="<?= base_url('Admin/pertanyaan/pertanyaanArsip'); ?>" method="POST" class="d-inline">
-                <button class="btn btn-primary mb-4 float-right">
-                    <i class=" fa fa-save"></i>
-                    Arsip Pertanyaan
+            <form action="<?= base_url('/Admin/Pertanyaan'); ?>" method="POST" class="d-inline">
+                <button class="btn btn-primary mb-4">
+                    <i class=" fa fa-arrow-left"></i>
+                    Kembali
                 </button>
             </form>
-
             <div class="table-responsive">
                 <table class="table table-sm table-bordered table-striped" id="dataTable" height="100%" width="100%" cellspacing="0">
                     <thead>
@@ -57,11 +52,10 @@
                                 <td class="text-justify"><?= $key['pertanyaan'] ?></td>
                                 <td class="text-left"><?= $key['kategori']; ?></td>
                                 <td class="text-center">
-                                    <button type="button" data-toggle="modal" data-target="#modalEditKategori<?= $key['id']; ?>" class="btn btn-success btn-sm" id="btn-edit-kategori" title="Edit"><i class="fas fa-edit "></i></button>
-                                    <form action="<?= base_url('Admin/pertanyaan/arsipPertanyaan/' . $key['id']); ?>" method="POST" class="d-inline">
-                                        <button type="submit" class="btn btn-secondary btn-sm" id="btn-archive-kategori" title="Arsip" onclick="return confirm('Apakah anda ingin mengarsipkan pertanyaan dengan kode : <?= $key['kode']; ?> ?')"><i class="fas fa-archive "></i></button>
+                                    <form action="<?= base_url('Admin/pertanyaan/recoveryPertanyaan/' . $key['id']); ?>" method="POST" class="d-inline">
+                                        <button type="submit" class="btn btn-secondary btn-sm" title="Pulih" onclick="return confirm('Apakah anda ingin memulihkan pertanyaan dengan kode : <?= $key['kode']; ?> ?')"><i class="fas fa-box "></i></button>
                                     </form>
-                                    <form action="<?= base_url('Admin/pertanyaan/deletePertanyaan/' . $key['id']); ?>" method="POST" class="d-inline">
+                                    <form action="<?= base_url('Admin/pertanyaan/deletePertanyaanArsip/' . $key['id']); ?>" method="POST" class="d-inline">
                                         <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus pertanyaan dengan kode :  <?= $key['kode']; ?> ?')" title="Hapus"><i class="fas fa-trash"></i></button>
                                     </form>
                                 </td>
@@ -90,7 +84,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" enctype="multipart/form-data" action="<?= base_url('Admin/Kategori/addKategori') ?>">
+                <form method="POST" enctype="multipart/form-data" action="<?= base_url('Kategori/addKategori') ?>">
                     <div class="form-group">
                         <label>Nama Kategori</label>
                         <input class="form-control" type="text" name="nama_param" placeholder="Masukkan nama kategori..." />

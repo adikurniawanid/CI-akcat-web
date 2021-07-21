@@ -6,7 +6,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('Admin'); ?>">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('Admin/Dashboard'); ?>">
                 <div class=" sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-laugh-wink"></i>
                 </div>
@@ -18,7 +18,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('Dashboard'); ?>">
+                <a class="nav-link" href="<?= base_url('Admin/Dashboard'); ?>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -33,14 +33,14 @@
 
             <!-- Nav Item - Kategori -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('kategori'); ?>">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                <a class="nav-link" href="<?= base_url('Admin/Kategori'); ?>">
+                    <i class="fas fa-fw fa-layer-group"></i>
                     <span>Kategori Soal</span></a>
             </li>
             <!-- Nav Item - Pertanyaan -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('pertanyaan'); ?>">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                <a class="nav-link" href="<?= base_url('Admin/pertanyaan'); ?>">
+                    <i class="fas fa-fw fa-question-circle"></i>
                     <span>Pertanyaan</span></a>
             </li>
 
@@ -54,32 +54,15 @@
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Sesi Ujian</span>
-                </a>
-                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Sesi Ujian:</h6>
-                        <a class="collapse-item" href="<?= base_url('sesiUjianAktif'); ?>">Sesi Ujian Aktif</a>
-                        <a class="collapse-item" href="<?= base_url('sesiUjianArsip'); ?>">Arsip Sesi Ujian</a>
-                    </div>
-                </div>
+                <a class="nav-link" href="<?= base_url('Admin/SesiUjian'); ?>">
+                    <i class="fas fa-fw fa-calendar-alt"></i>
+                    <span>Sesi Ujian</span></a>
             </li>
-
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseTwo">
-                    <i class="fas fa-fw fa-cog"></i>
-                    <span>Nilai Ujian</span>
-                </a>
-                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Nilai Ujian:</h6>
-                        <a class="collapse-item" href="<?= base_url('NilaiUjianAktif'); ?>">Nilai Ujian Aktif</a>
-                        <a class="collapse-item" href="<?= base_url('NilaiUjianArsip'); ?>">Arsip Nilai Ujian</a>
-                    </div>
-                </div>
+                <a class="nav-link" href="<?= base_url('Admin/NilaiUjian'); ?>">
+                    <i class="fas fa-fw fa-chart-bar"></i>
+                    <span>Nilai Ujian</span></a>
             </li>
 
             <!-- Divider -->

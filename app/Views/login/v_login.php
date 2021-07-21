@@ -35,7 +35,7 @@
 											</div>
 										</div> -->
 										<br>
-										<a href="/Admin" class="btn btn-primary btn-user btn-block">
+										<a href="<?= base_url('Auth/Login/Login') ?>" class="btn btn-primary btn-user btn-block">
 											Login
 										</a>
 										<!-- <hr>
