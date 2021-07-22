@@ -31,7 +31,7 @@
                 <i class="fa fa-plus"></i>
                 Tambah Kategori
             </div>
-            <form action="<?= base_url('Admin/Kategori/kategoriArsip'); ?>" method="POST" class="d-inline">
+            <form action="<?= base_url('Admin/Kategori/Arsip'); ?>" method="POST" class="d-inline">
                 <button class="btn btn-primary mb-4 float-right">
                     <i class=" fa fa-save"></i>
                     Arsip Kategori
@@ -42,8 +42,8 @@
                     <thead>
                         <tr class="text-center">
                             <td class="col-1">No</td>
-                            <td class="col-2">Kode Kategori</td>
-                            <td class="col-5">Nama Kategori</td>
+                            <td class="col-1">Kode Kategori</td>
+                            <td class="col-7">Nama Kategori</td>
                             <!-- <td class="col-1">Jumlah Soal</td> -->
                             <td class="col-1">Bobot Nilai</td>
                             <td class="col-2">Aksi</td>
@@ -97,11 +97,11 @@
                 <form method="POST" enctype="multipart/form-data" action="<?= base_url('Admin/Kategori/addKategori') ?>">
                     <div class="form-group">
                         <label>Nama Kategori</label>
-                        <input autocomplete="off" class="form-control" type="text" name="nama_param" placeholder="Masukkan nama kategori..." />
+                        <input autocomplete="off" class="form-control" required type="text" name="nama_param" placeholder="Masukkan nama kategori..." />
                     </div>
                     <div class="form-group">
                         <label>Nilai Kategori</label>
-                        <input autocomplete="off" class="form-control" type="number" min="0" name="nilai_param" placeholder="Masukkan nilai kategori..." />
+                        <input autocomplete="off" class="form-control" required type="number" min="0" name="nilai_param" placeholder="Masukkan nilai kategori..." />
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -131,11 +131,11 @@ foreach ($kategori as $row) : $no++; ?>
                     <form method="POST" enctype="multipart/form-data" action="<?= base_url('Admin/Kategori/editKategori') ?>">
                         <div class="form-group">
                             <label>Nama Kategori</label>
-                            <input class="form-control" type="text" name="nama_param" id="nama-param" value="<?= $row['nama'] ?>" />
+                            <input required autocomplete="off" class="form-control" type="text" name="nama_param" id="nama-param" value="<?= $row['nama'] ?>" />
                         </div>
                         <div class="form-group">
                             <label>Nilai Kategori</label>
-                            <input class="form-control" type="number" min="0" name="nilai_param" value="<?= $row['nilai'] ?>" />
+                            <input required autocomplete="off" class="form-control" type="number" min="0" name="nilai_param" value="<?= $row['nilai'] ?>" />
                         </div>
                         <div class="form-group">
                             <input class="form-control" type="hidden" name="id_param" value="<?= $row['id'] ?>" />

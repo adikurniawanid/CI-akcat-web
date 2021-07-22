@@ -38,8 +38,9 @@
                     <thead>
                         <tr class="text-center">
                             <td class="col-1">No</td>
-                            <td class="col-2">Kode Kategori</td>
-                            <td class="col-6">Nama Kategori</td>
+                            <td class="col-1">Kode Kategori</td>
+                            <td class="col-7">Nama Kategori</td>
+                            <!-- <td class="col-1">Jumlah Soal</td> -->
                             <td class="col-1">Bobot Nilai</td>
                             <td class="col-2">Aksi</td>
                         </tr>

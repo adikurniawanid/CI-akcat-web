@@ -8,7 +8,7 @@
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('Admin/Dashboard'); ?>">
                 <div class=" sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-laugh-wink"></i>
+                    <i class="fas fa-file-alt"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3">Halaman Admin</div>
             </a>
@@ -39,7 +39,7 @@
             </li>
             <!-- Nav Item - Pertanyaan -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('Admin/pertanyaan'); ?>">
+                <a class="nav-link" href="<?= base_url('Admin/Pertanyaan'); ?>">
                     <i class="fas fa-fw fa-question-circle"></i>
                     <span>Pertanyaan</span></a>
             </li>

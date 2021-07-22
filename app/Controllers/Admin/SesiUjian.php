@@ -174,6 +174,7 @@ class SesiUjian extends BaseController
 
                 $success = $this->model->edit_sesi_ujian($data['id_param'], $data['nama_param'], $data['lokasi_param'], $waktu_mulai_param, $data['durasi_param']);
 
+                // echo $data['id_param'], $data['nama_param'], $data['lokasi_param'], $waktu_mulai_param, $data['durasi_param'];
                 if ($success) {
                     $message = 'Sesi Ujian <b>' . $data['nama_param'] . '</b> berhasil diedit';
                     session()->setFlashData('message', $message);

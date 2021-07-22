@@ -148,7 +148,7 @@ class Kategori extends BaseController
         }
     }
 
-    public function kategoriArsip()
+    public function arsip()
     {
         $data = [
             'judul' => 'Arsip Kategori Soal',
@@ -171,7 +171,7 @@ class Kategori extends BaseController
         if ($success) {
             $message = 'Kategori <b>' . $nameTemp . '</b> berhasil dihapus';
             session()->setFlashData('message', $message);
-            return redirect()->to(base_url('Admin/Kategori/kategoriArsip'));
+            return redirect()->to(base_url('Admin/Kategori/Arsip'));
         }
     }
 
@@ -184,7 +184,7 @@ class Kategori extends BaseController
         if ($success) {
             $message = 'Kategori <b>' . $nameTemp . '</b> berhasil dipulihkan';
             session()->setFlashData('message', $message);
-            return redirect()->to(base_url('Admin/Kategori/kategoriArsip'));
+            return redirect()->to(base_url('Admin/Kategori/Arsip'));
         }
     }
 

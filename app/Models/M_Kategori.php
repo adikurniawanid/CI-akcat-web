@@ -46,6 +46,11 @@ class M_Kategori extends Model
         return $this->db->query("call get_kategori_name('$id_param')")->getresultArray();
     }
 
+    public function get_kategori_kode($id_param)
+    {
+        return $this->db->query("call get_kategori_kode('$id_param')")->getresultArray();
+    }
+
     public function edit_kategori($id_param, $nama_param, $nilai_param)
     {
         return $this->db->query("call edit_kategori('$id_param', '$nama_param', $nilai_param)");

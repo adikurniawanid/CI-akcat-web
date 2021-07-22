@@ -17,6 +17,6 @@ class Login extends BaseController
 
 	public function login()
 	{
-		return redirect()->to(base_url('Admin/dashboard'));
+		return redirect()->to(base_url('Admin/Dashboard'));
 	}
 }

@@ -40,4 +40,32 @@ class M_Pertanyaan extends Model
     {
         return $this->db->query("call get_pertanyaan_kode('$id_param')")->getresultArray();
     }
+
+    public function add_pertanyaan($id_param, $kode_param, $pertanyaan_param, $kategori_id_param, $opsi_a_param, $opsi_b_param, $opsi_c_param, $opsi_d_param, $kunci, $gambar_param, $audio_param)
+    {
+        if (is_null($gambar_param)) {
+            if (is_null($audio_param)) {
+                return $this->db->query("call add_pertanyaan('$id_param','$kode_param', '$pertanyaan_param', '$kategori_id_param', '$opsi_a_param', '$opsi_b_param', '$opsi_c_param', '$opsi_d_param', '$kunci', null, null)");
+            }
+            return $this->db->query("call add_pertanyaan('$id_param','$kode_param', '$pertanyaan_param', '$kategori_id_param', '$opsi_a_param', '$opsi_b_param', '$opsi_c_param', '$opsi_d_param', '$kunci', null, '$audio_param')");
+        } elseif (is_null($audio_param)) {
+            return $this->db->query("call add_pertanyaan('$id_param','$kode_param', '$pertanyaan_param', '$kategori_id_param', '$opsi_a_param', '$opsi_b_param', '$opsi_c_param', '$opsi_d_param', '$kunci', '$gambar_param', null)");
+        } else {
+            return $this->db->query("call add_pertanyaan('$id_param','$kode_param', '$pertanyaan_param', '$kategori_id_param', '$opsi_a_param', '$opsi_b_param', '$opsi_c_param', '$opsi_d_param', '$kunci', '$gambar_param', '$audio_param')");
+        }
+    }
+
+    public function edit_pertanyaan($id_param, $pertanyaan_param, $kategori_id_param, $opsi_a_param, $opsi_b_param, $opsi_c_param, $opsi_d_param, $kunci, $gambar_param, $audio_param)
+    {
+        if (is_null($gambar_param)) {
+            if (is_null($audio_param)) {
+                return $this->db->query("call edit_pertanyaan('$id_param', '$pertanyaan_param', '$kategori_id_param', '$opsi_a_param', '$opsi_b_param', '$opsi_c_param', '$opsi_d_param', '$kunci', null, null)");
+            }
+            return $this->db->query("call edit_pertanyaan('$id_param', '$pertanyaan_param', '$kategori_id_param', '$opsi_a_param', '$opsi_b_param', '$opsi_c_param', '$opsi_d_param', '$kunci', null, '$audio_param')");
+        } elseif (is_null($audio_param)) {
+            return $this->db->query("call edit_pertanyaan('$id_param', '$pertanyaan_param', '$kategori_id_param', '$opsi_a_param', '$opsi_b_param', '$opsi_c_param', '$opsi_d_param', '$kunci', '$gambar_param', null)");
+        } else {
+            return $this->db->query("call edit_pertanyaan('$id_param', '$pertanyaan_param', '$kategori_id_param', '$opsi_a_param', '$opsi_b_param', '$opsi_c_param', '$opsi_d_param', '$kunci', '$gambar_param', '$audio_param')");
+        }
+    }
 }

@@ -28,7 +28,7 @@
 
     <div class="card">
         <div class="card-body">
-            <form action="<?= base_url('Admin/sesiUjian'); ?>" method="POST" class="d-inline">
+            <form action="<?= base_url('Admin/SesiUjian'); ?>" method="POST" class="d-inline">
                 <button class="btn btn-primary mb-4">
                     <i class=" fa fa-arrow-left"></i>
                     Kembali
@@ -38,14 +38,14 @@
                 <table class="table table-sm table-bordered table-striped" id="dataTable" height="100%" width="100%" cellspacing="0">
                     <thead>
                         <tr class="text-center">
-                            <td>No</td>
-                            <td>Kode Sesi</td>
-                            <td>Nama Ujian</td>
-                            <td>Lokasi Ujian</td>
-                            <td>Waktu Mulai</td>
-                            <td>Waktu Selesai</td>
-                            <td>Durasi</td>
-                            <td>Aksi</td>
+                            <td class="col-1">No</td>
+                            <td class="col-1">Kode Sesi</td>
+                            <td class="col-2">Nama Ujian</td>
+                            <td class="col-2">Lokasi Ujian</td>
+                            <td class="col-1.5">Waktu Mulai</td>
+                            <td class="col-1.5">Waktu Selesai</td>
+                            <td class="col-1">Durasi</td>
+                            <td class="col-2">Aksi</td>
                         </tr>
                         <?php $i = 1 ?>
                         <?php

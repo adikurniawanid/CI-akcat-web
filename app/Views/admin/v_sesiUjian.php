@@ -35,7 +35,7 @@
                     Arsip Ujian
                 </button>
             </form>
-            <div class="table-responsive">
+            <div class="table-responsive ">
                 <table class="table table-sm table-bordered table-striped" id="dataTable" height="100%" width="100%" cellspacing="0">
                     <thead>
                         <tr class="text-center">
@@ -43,15 +43,15 @@
                             <td class="col-1">Kode Sesi</td>
                             <td class="col-2">Nama Ujian</td>
                             <td class="col-2">Lokasi Ujian</td>
-                            <td class="col-2">Waktu Mulai</td>
-                            <td class="col-2">Waktu Selesai</td>
+                            <td class="col-1.5">Waktu Mulai</td>
+                            <td class="col-1.5">Waktu Selesai</td>
                             <td class="col-1">Durasi</td>
                             <td class="col-2">Aksi</td>
                         </tr>
                         <?php $i = 1 ?>
                         <?php
                         foreach ($sesi as $key) : ?>
-                            <tr class="text-center ">
+                            <tr class="text-center">
                                 <td><?= $i; ?></td>
                                 <td><?= $key['kode']; ?></td>
                                 <td class="text-left"><?= $key['nama_ujian']; ?></td>
@@ -96,29 +96,29 @@
                 <form method="POST" enctype="multipart/form-data" action="<?= base_url('Admin/SesiUjian/addSesiUjian') ?>">
                     <div class="form-group">
                         <label>Nama Ujian</label>
-                        <input autocomplete="off" class="form-control" type="text" name="nama_param" placeholder="Masukkan nama ujian..." />
+                        <input required autocomplete="off" class="form-control" type="text" name="nama_param" placeholder="Masukkan nama ujian..." />
                     </div>
                     <div class="form-group">
                         <label>Lokasi Ujian</label>
-                        <input autocomplete="off" class="form-control" type="text" name="lokasi_param" placeholder="Masukkan lokasi ujian..." />
+                        <input required autocomplete="off" class="form-control" type="text" name="lokasi_param" placeholder="Masukkan lokasi ujian..." />
                     </div>
                     <div class="row">
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Tanggal Ujian</label>
-                                <input type="date" class="form-control" name="tanggal_ujian_param">
+                                <input required type="date" class="form-control" name="tanggal_ujian_param">
                             </div>
                         </div>
                         <div class="col-6">
                             <div class="form-group">
                                 <label>Jam Ujian</label>
-                                <input type="time" class="form-control" name="jam_ujian_param" min="">
+                                <input required type="time" class="form-control" name="jam_ujian_param" min="">
                             </div>
                         </div>
                     </div>
                     <div class="form-group">
                         <label>Durasi</label>
-                        <input autocomplete="off" class="form-control" type="number" min="0" name="durasi_param" placeholder="Masukkan durasi dalam menit..." />
+                        <input required autocomplete="off" class="form-control" type="number" min="0" name="durasi_param" placeholder="Masukkan durasi dalam menit..." />
                     </div>
                     <div class=" modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -150,29 +150,32 @@ foreach ($sesi as $row) : $no++;
                     <form method="POST" enctype="multipart/form-data" action="<?= base_url('Admin/SesiUjian/editSesiUjian') ?>">
                         <div class="form-group">
                             <label>Nama Ujian</label>
-                            <input autocomplete="off" class="form-control" type="text" name="nama_param" placeholder="Masukkan nama ujian..." value="<?= $row['nama_ujian'] ?>" />
+                            <input autocomplete="off" required class="form-control" type="text" name="nama_param" placeholder="Masukkan nama ujian..." value="<?= $row['nama_ujian'] ?>" />
                         </div>
                         <div class="form-group">
                             <label>Lokasi Ujian</label>
-                            <input autocomplete="off" class="form-control" type="text" name="lokasi_param" placeholder="Masukkan lokasi ujian..." value="<?= $row['tempat_ujian'] ?>" />
+                            <input autocomplete="off" required class="form-control" type="text" name="lokasi_param" placeholder="Masukkan lokasi ujian..." value="<?= $row['tempat_ujian'] ?>" />
                         </div>
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Tanggal Ujian</label>
-                                    <input type="date" class="form-control" name="tanggal_ujian_param" value="<?= $waktu_mulai_param[0] ?>">
+                                    <input type="date" required class="form-control" name="tanggal_ujian_param" value="<?= $waktu_mulai_param[0] ?>">
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Jam Ujian</label>
-                                    <input type="time" class="form-control" name="jam_ujian_param" value="<?= $waktu_mulai_param[1] ?>">
+                                    <input type="time" required class="form-control" name="jam_ujian_param" value="<?= $waktu_mulai_param[1] ?>">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
                             <label>Durasi</label>
-                            <input autocomplete="off" class="form-control" type="number" min="0" name="durasi_param" placeholder="Masukkan durasi dalam menit..." value="<?= $row['durasi'] ?>" />
+                            <input autocomplete="off" required class="form-control" type="number" min="0" name="durasi_param" placeholder="Masukkan durasi dalam menit..." value="<?= $row['durasi'] ?>" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="hidden" name="id_param" value="<?= $row['id'] ?>" />
                         </div>
                         <div class=" modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
