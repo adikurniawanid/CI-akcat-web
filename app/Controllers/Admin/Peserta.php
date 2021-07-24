@@ -190,4 +190,91 @@ class Peserta extends BaseController
             return redirect()->to(base_url('Admin/Peserta'));
         }
     }
+
+    public function editPeserta()
+    {
+        if (isset($_POST['buttonEditPeserta'])) {
+            $val = $this->validate([
+                'nama_param' => [
+                    'label' => 'Nama Peserta',
+                    'rules' => 'required|max_length[50]',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong.',
+                        'max_length' => '{field} tidak boleh lebih dari 50 karakter.'
+                    ]
+
+                ],
+                'no_hp_param' => [
+                    'label' => 'No Handphone',
+                    'rules' => 'required',
+                    'rules' => 'required|max_length[18]',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong.',
+                        'max_length' => '{field} tidak boleh lebih dari 18 angka.'
+                    ]
+                ],
+                'instansi_param' => [
+                    'label' => 'Instansi',
+                    'rules' => 'required|max_length[50]',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong.',
+                        'max_length' => '{field} tidak boleh lebih dari 50 karakter.'
+                    ]
+                ],
+                'email_param' => [
+                    'label' => 'Email',
+                    'rules' => 'required|max_length[50]',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong.',
+                        'max_length' => '{field} tidak boleh lebih dari 50 karakter.'
+                    ]
+                ],
+                'jenis_kelamin_id_param' => [
+                    'label' => 'Jenis Kelamin',
+                    'rules' => 'required',
+                    'errors' => [
+                        'required' => '{field} tidak boleh kosong.',
+                    ]
+                ],
+            ]);
+
+            if (!$val) {
+                session()->setFlashData('err', \Config\Services::validation()->listErrors());
+                return redirect()->to(base_url('Admin/Peserta'));
+            } else {
+                $data = [
+                    'id_param' => $this->request->getPost('id_param'),
+                    'nama_param' => $this->request->getPost('nama_param'),
+                    'email_param' => $this->request->getPost('email_param'),
+                    'jenis_kelamin_id_param' => $this->request->getPost('jenis_kelamin_id_param'),
+                    'no_hp_param' => $this->request->getPost('no_hp_param'),
+                    'instansi_param' => $this->request->getPost('instansi_param'),
+                    'password_param' => $this->request->getPost('password_baru_param'),
+                ];
+
+
+                if ($data['password_param'] == "" or is_null($data['password_param'])) {
+                    $data['password_param'] = null;
+                }
+
+                $success = $this->model->edit_peserta(
+                    $data['id_param'],
+                    $data['email_param'],
+                    $data['password_param'],
+                    $data['nama_param'],
+                    $data['jenis_kelamin_id_param'],
+                    $data['no_hp_param'],
+                    $data['instansi_param']
+                );
+
+                if ($success) {
+                    $message = 'Peserta <b>' . $data['nama_param'] . '</b> berhasil diedit';
+                    session()->setFlashData('message', $message);
+                    return redirect()->to(base_url('Admin/Peserta'));
+                }
+            }
+        } else {
+            return redirect()->to(base_url('Admin/Peserta'));
+        }
+    }
 }

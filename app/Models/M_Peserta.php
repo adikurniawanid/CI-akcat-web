@@ -61,6 +61,24 @@ class M_Peserta extends Model
         '$instansi_param')");
     }
 
+    public function edit_peserta(
+        $id_param,
+        $email_param,
+        $password_param,
+        $nama_param,
+        $jenis_kelamin_id_param,
+        $no_hp_param,
+        $instansi_param
+    ) {
+        return $this->db->query("call edit_peserta('$id_param',
+        '$email_param',
+        '$password_param',
+        '$nama_param',
+        '$jenis_kelamin_id_param',
+        '$no_hp_param',
+        '$instansi_param')");
+    }
+
     public function get_jenis_kelamin_list()
     {
         return $this->db->query('call get_jenis_kelamin_list()')->getResultArray();
