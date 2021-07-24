@@ -39,7 +39,7 @@ class Pertanyaan extends BaseController
         if ($success) {
             $message = 'Pertanyaan dengan kode : <b>' . $kodeTemp . '</b> berhasil diarsipkan';
             session()->setFlashData('message', $message);
-            return redirect()->to(base_url('Admin/pertanyaan'));
+            return redirect()->to(base_url('Admin/Pertanyaan'));
         }
     }
 
@@ -52,7 +52,7 @@ class Pertanyaan extends BaseController
         if ($success) {
             $message = 'Pertanyaan dengan kode : <b>' . $kodeTemp . '</b> berhasil dihapus';
             session()->setFlashData('message', $message);
-            return redirect()->to(base_url('Admin/pertanyaan'));
+            return redirect()->to(base_url('Admin/Pertanyaan'));
         }
     }
 
@@ -103,7 +103,7 @@ class Pertanyaan extends BaseController
                     'label' => 'Kategori',
                     'rules' => 'required',
                     'errors' => [
-                        'required' => '{field} tidak boleh kosong.',
+                        'required' => '{field} tidak boleh kosong.'
                     ]
                 ],
                 'pertanyaan_param' => [

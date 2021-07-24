@@ -28,7 +28,7 @@ class SesiUjian extends BaseController
         echo view('templates/v_footer');
     }
 
-    public function sesiUjianArsip()
+    public function arsip()
     {
         $data = [
             'judul' => 'Arsip Sesi Ujian',
@@ -51,7 +51,7 @@ class SesiUjian extends BaseController
                     'rules' => 'required|max_length[100]',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong.',
-                        'max_legth' => '{field} tidak boleh lebih dari 100 huruf.'
+                        'max_length' => '{field} tidak boleh lebih dari 100 huruf.'
                     ]
                 ],
                 'lokasi_param' => [
@@ -59,7 +59,7 @@ class SesiUjian extends BaseController
                     'rules' => 'required|max_length[100]',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong.',
-                        'max_legth' => '{field} tidak boleh lebih dari 100 huruf.'
+                        'max_length' => '{field} tidak boleh lebih dari 100 huruf.'
                     ]
                 ],
                 'tanggal_ujian_param' => [
@@ -123,7 +123,7 @@ class SesiUjian extends BaseController
                     'rules' => 'required|max_length[100]',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong.',
-                        'max_legth' => '{field} tidak boleh lebih dari 100 huruf.'
+                        'max_length' => '{field} tidak boleh lebih dari 100 huruf.'
                     ]
                 ],
                 'lokasi_param' => [
@@ -131,7 +131,7 @@ class SesiUjian extends BaseController
                     'rules' => 'required|max_length[100]',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong.',
-                        'max_legth' => '{field} tidak boleh lebih dari 100 huruf.'
+                        'max_length' => '{field} tidak boleh lebih dari 100 huruf.'
                     ]
                 ],
                 'tanggal_ujian_param' => [
@@ -221,7 +221,7 @@ class SesiUjian extends BaseController
         if ($success) {
             $message = 'Sesi <b>' . $nameTemp . '</b> berhasil dihapus';
             session()->setFlashData('message', $message);
-            return redirect()->to(base_url('Admin/SesiUjian/SesiUjianArsip'));
+            return redirect()->to(base_url('Admin/SesiUjian/Arsip'));
         }
     }
 
@@ -234,7 +234,7 @@ class SesiUjian extends BaseController
         if ($success) {
             $message = 'Sesi <b>' . $nameTemp . '</b> berhasil dipulihkan';
             session()->setFlashData('message', $message);
-            return redirect()->to(base_url('Admin/SesiUjian/SesiUjianArsip'));
+            return redirect()->to(base_url('Admin/SesiUjian/Arsip'));
         }
     }
 }

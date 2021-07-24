@@ -12,7 +12,7 @@ class Login extends BaseController
 			'judul' => 'Login'
 		];
 		echo view('templates/v_header', $data);
-		echo view('login/v_login');
+		echo view('auth/v_login');
 	}
 
 	public function login()

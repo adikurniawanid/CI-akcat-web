@@ -5,8 +5,6 @@
     <h1 class="h3 mb-4 text-gray-800"><?= $judul; ?></h1>
     <?php
 
-    use App\Controllers\Kategori;
-
     if (session()->get('message')) : ?>
         <div class="alert alert-success alert-alert-dismissible fade show " role="alert">
             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -25,56 +23,75 @@
         </div>
     <?php endif ?>
 
-    <div class="card">
+    <div class="card border-left-primary">
         <div class="card-body">
-            <div class="btn btn-primary mb-4 mr-4" data-toggle="modal" data-target="#addKategori">
-                <i class="fa fa-plus"></i>
-                Tambah Kategori
-            </div>
-            <form action="<?= base_url('Admin/Kategori/Arsip'); ?>" method="POST" class="d-inline">
-                <button class="btn btn-primary mb-4 float-right">
+            <a data-toggle="modal" data-target="#addKategori" class="btn btn-primary btn-icon-split mb-3">
+                <span class="icon text-white-50">
+                    <i class="fa fa-plus"></i>
+                </span>
+                <span class="text">Tambah Kategori</span>
+            </a>
+
+            <a href="<?= base_url('Admin/Kategori/Arsip'); ?>" class="btn btn-primary btn-icon-split mb-3 float-right">
+                <span class="icon text-white-50">
                     <i class=" fa fa-save"></i>
-                    Arsip Kategori
-                </button>
-            </form>
-            <div class="table-responsive">
-                <table class="table table-sm table-bordered table-striped" id="dataTable" height="100%" width="100%" cellspacing="0">
-                    <thead>
-                        <tr class="text-center">
-                            <td class="col-1">No</td>
-                            <td class="col-1">Kode Kategori</td>
-                            <td class="col-7">Nama Kategori</td>
-                            <!-- <td class="col-1">Jumlah Soal</td> -->
-                            <td class="col-1">Bobot Nilai</td>
-                            <td class="col-2">Aksi</td>
-                        </tr>
-                        <?php $i = 1 ?>
-                        <?php
-                        foreach ($kategori as $key) : ?>
-                            <tr class="text-center ">
-                                <td><?= $i; ?></td>
-                                <td><?= $key['kode'] ?></td>
-                                <td class="text-left"><?= $key['nama']; ?></td>
-                                <!-- <td> -->
-                                <? //= (base_url('/Admin/Kategori/getJumlahSoalByKategori') . '/' . $key['id']) 
-                                ?>
-                                <!-- </td> -->
-                                <td><?= $key['nilai'] ?></td>
-                                <td class="text-center">
-                                    <button type="button" data-toggle="modal" data-target="#modalEditKategori<?= $key['id']; ?>" class="btn btn-success btn-sm" id="btn-edit-kategori" title="Edit"><i class="fas fa-edit "></i></button>
-                                    <form action="/Admin/kategori/arsipKategori/<?= $key['id']; ?>" method="POST" class="d-inline">
-                                        <button type="submit" class="btn btn-secondary btn-sm" id="btn-archive-kategori" title="Arsip" onclick="return confirm('Apakah anda ingin mengarsipkan kategori <?= $key['nama']; ?> ?')"><i class="fas fa-archive "></i></button>
-                                    </form>
-                                    <form action="/Admin/kategori/deleteKategori/<?= $key['id']; ?>" method="POST" class="d-inline">
-                                        <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin menghapus kategori <?= $key['nama']; ?> ?')" title="Hapus"><i class="fas fa-trash"></i></button>
-                                    </form>
-                                </td>
-                            </tr>
-                            <?php $i++ ?>
-                        <?php endforeach ?>
-                    </thead>
-                </table>
+                </span>
+                <span class="text">Arsip Kategori</span>
+            </a>
+
+            <!-- DataTales -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary"><?= "Tabel Data " . $judul; ?></h6>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered " id="toDataTable" width="100%" cellspacing="0">
+                            <thead class="text-center">
+                                <tr>
+                                    <th class="col-1">No</th>
+                                    <th class="col-1">Kode Kategori</th>
+                                    <th class="col-7">Nama Kategori</th>
+                                    <th class="col-1">Bobot Nilai</th>
+                                    <th class="col-2">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tfoot class="text-center">
+                                <tr>
+                                    <th>No</th>
+                                    <th>Kode Kategori</th>
+                                    <th>Nama Kategori</th>
+                                    <th>Bobot Nilai</th>
+                                    <th>Aksi</th>
+                                </tr>
+                            </tfoot>
+                            <tbody class="text-center">
+                                <?php
+                                $no = 1;
+                                foreach ($kategori as $key) : ?>
+                                    <tr>
+                                        <td><?= $no; ?></td>
+                                        <td><?= $key['kode'] ?></td>
+                                        <td><?= $key['nama']; ?></td>
+                                        <td><?= $key['nilai'] ?></td>
+                                        <td>
+                                            <button type="button" data-toggle="modal" data-target="#modalEditKategori<?= $key['id']; ?>" class="btn btn-success btn-sm" id="btn-edit-kategori" title="Edit"><i class="fas fa-edit "></i></button>
+                                            <form action="/Admin/kategori/arsipKategori/<?= $key['id']; ?>" method="POST" class="d-inline">
+                                                <button type="submit" class="btn btn-secondary btn-sm" id="btn-archive-kategori" title="Arsip" onclick="return confirm('Apakah anda ingin mengarsipkan kategori <?= $key['nama']; ?> ?')"><i class="fas fa-archive "></i></button>
+                                            </form>
+                                            <form action="/Admin/kategori/deleteKategori/<?= $key['id']; ?>" method="POST" class="d-inline">
+                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin menghapus kategori <?= $key['nama']; ?> ?')" title="Hapus"><i class="fas fa-trash"></i></button>
+                                            </form>
+                                        </td>
+                                    </tr>
+                                <?php $no++;
+                                endforeach ?>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
+            <!-- End of Data Table -->
         </div>
     </div>
 </div>
@@ -97,7 +114,7 @@
                 <form method="POST" enctype="multipart/form-data" action="<?= base_url('Admin/Kategori/addKategori') ?>">
                     <div class="form-group">
                         <label>Nama Kategori</label>
-                        <input autocomplete="off" class="form-control" required type="text" name="nama_param" placeholder="Masukkan nama kategori..." />
+                        <input maxlength="100" autocomplete="off" class="form-control" required type="text" name="nama_param" placeholder="Masukkan nama kategori..." />
                     </div>
                     <div class="form-group">
                         <label>Nilai Kategori</label>
@@ -131,7 +148,7 @@ foreach ($kategori as $row) : $no++; ?>
                     <form method="POST" enctype="multipart/form-data" action="<?= base_url('Admin/Kategori/editKategori') ?>">
                         <div class="form-group">
                             <label>Nama Kategori</label>
-                            <input required autocomplete="off" class="form-control" type="text" name="nama_param" id="nama-param" value="<?= $row['nama'] ?>" />
+                            <input maxlength="100" required autocomplete="off" class="form-control" type="text" name="nama_param" id="nama-param" value="<?= $row['nama'] ?>" />
                         </div>
                         <div class="form-group">
                             <label>Nilai Kategori</label>

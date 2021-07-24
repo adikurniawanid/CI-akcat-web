@@ -10,7 +10,7 @@
                 <div class=" sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-file-alt"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Halaman Admin</div>
+                <div class="sidebar-brand-text mx-3">AKCAT</div>
             </a>
 
             <!-- Divider -->
@@ -59,12 +59,18 @@
                     <span>Sesi Ujian</span></a>
             </li>
             <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
+            <!-- <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('Admin/NilaiUjian'); ?>">
                     <i class="fas fa-fw fa-chart-bar"></i>
                     <span>Nilai Ujian</span></a>
-            </li>
+            </li> -->
 
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('Admin/Peserta'); ?>">
+                    <i class="fas fa-fw fa-user-circle"></i>
+                    <span>Peserta</span></a>
+            </li>
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 

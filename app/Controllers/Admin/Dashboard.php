@@ -9,7 +9,7 @@ class Dashboard extends BaseController
     public function index()
     {
         $data = [
-            'judul' => 'Halaman Admin'
+            'judul' => 'Dashboard'
         ];
 
         echo view('templates/v_header', $data);

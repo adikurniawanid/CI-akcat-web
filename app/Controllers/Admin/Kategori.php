@@ -36,7 +36,7 @@ class Kategori extends BaseController
                     'rules' => 'required|max_length[100]',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong.',
-                        'max_legth' => '{field} tidak boleh lebih dari 100 huruf.'
+                        'max_length' => '{field} tidak boleh lebih dari 100 huruf.'
                     ]
 
                 ],
@@ -44,15 +44,14 @@ class Kategori extends BaseController
                     'label' => 'Nilai Kategori',
                     'rules' => 'required',
                     'errors' => [
-                        'required' => '{field} tidak boleh kosong.',
-                        'max_legth' => '{field} tidak boleh lebih dari 100 huruf.'
+                        'required' => '{field} tidak boleh kosong.'
                     ]
                 ]
             ]);
 
             if (!$val) {
                 session()->setFlashData('err', \Config\Services::validation()->listErrors());
-                return redirect()->to(base_url('Admin/kategori'));
+                return redirect()->to(base_url('Admin/Kategori'));
             } else {
                 $id_param = uniqid();
                 $kode_param = substr(md5(microtime()), rand(0, 26), 5);
@@ -67,11 +66,11 @@ class Kategori extends BaseController
                 if ($success) {
                     $message = 'Kategori <b>' . $data['nama_param'] . '</b> berhasil ditambahkan';
                     session()->setFlashData('message', $message);
-                    return redirect()->to(base_url('Admin/kategori'));
+                    return redirect()->to(base_url('Admin/Kategori'));
                 }
             }
         } else {
-            return redirect()->to(base_url('Admin/kategori'));
+            return redirect()->to(base_url('Admin/Kategori'));
         }
     }
 
@@ -110,7 +109,7 @@ class Kategori extends BaseController
                     'rules' => 'required|max_length[100]',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong.',
-                        'max_legth' => '{field} tidak boleh lebih dari 100 huruf.'
+                        'max_length' => '{field} tidak boleh lebih dari 100 huruf.'
                     ]
 
                 ],
@@ -118,15 +117,14 @@ class Kategori extends BaseController
                     'label' => 'Nilai Kategori',
                     'rules' => 'required',
                     'errors' => [
-                        'required' => '{field} tidak boleh kosong.',
-                        'max_legth' => '{field} tidak boleh lebih dari 100 huruf.'
+                        'required' => '{field} tidak boleh kosong.'
                     ]
                 ]
             ]);
 
             if (!$val) {
                 session()->setFlashData('err', \Config\Services::validation()->listErrors());
-                return redirect()->to(base_url('Admin/kategori'));
+                return redirect()->to(base_url('Admin/Kategori'));
             } else {
 
                 $data = [
@@ -140,9 +138,9 @@ class Kategori extends BaseController
                 if ($success) {
                     $message = 'Kategori <b>' . $data['nama_param'] . '</b> berhasil diedit';
                     session()->setFlashData('message', $message);
-                    return redirect()->to(base_url('Admin/kategori'));
+                    return redirect()->to(base_url('Admin/Kategori'));
                 } else {
-                    return redirect()->to(base_url('Admin/kategori'));
+                    return redirect()->to(base_url('Admin/Kategori'));
                 }
             }
         }
