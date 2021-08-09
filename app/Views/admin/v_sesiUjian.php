@@ -1,31 +1,18 @@
+<?php
+echo $this->extend('/templates/v_layout');
+echo $this->section('content');
+?>
 <!-- Begin Page Content -->
 <div class="container-fluid">
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800"><?= $judul; ?></h1>
-    <?php
 
-    use App\Controllers\SesiUjian;
+    <!-- Validation -->
+    <?= view('validation/flashData') ?>
 
-    if (session()->get('message')) : ?>
-        <div class="alert alert-success alert-alert-dismissible fade show " role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <?= session()->getFlashData('message'); ?>
-        </div>
-    <?php endif
-    ?>
-    <?php if (session()->get('err')) : ?>
-        <div class="alert alert-danger alert-alert-dismissible fade show " role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <?= session()->getFlashData('err'); ?>
-        </div>
-    <?php endif ?>
     <div class="card border-left-primary">
         <div class="card-body">
-            <a data-toggle="modal" data-target="#addSesi" class="btn btn-primary btn-icon-split mb-3">
+            <a data-toggle="modal" data-target="#modalAddSesi" class="btn btn-primary btn-icon-split mb-3">
                 <span class="icon text-white-50">
                     <i class="fa fa-plus"></i>
                 </span>
@@ -46,7 +33,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered " id="toDataTable" width="100%" cellspacing="0">
+                        <table class="table table-bordered table-hover" id="toDataTable" width="100%" cellspacing="0">
                             <thead class="text-center">
                                 <tr>
                                     <th class="col-1">No</th>
@@ -82,9 +69,9 @@
                                         <td><?= $key['tempat_ujian'] ?></td>
                                         <td><?= $key['waktu_mulai'] ?></td>
                                         <td><?= $key['waktu_selesai'] ?></td>
-                                        <td><?= $key['durasi'] ?></td>
+                                        <td><?= $key['durasi'] ?><br>Menit</td>
                                         <td>
-                                            <button type="button" data-toggle="modal" data-target="#editSesi<?= $key['id']; ?>" class="btn btn-success btn-sm" id="btn-edit-Sesi" title="Edit"><i class="fas fa-edit "></i></button>
+                                            <button type="button" data-toggle="modal" data-target="#modalEditSesi<?= $key['id']; ?>" class="btn btn-success btn-sm" id="btn-edit-Sesi" title="Edit"><i class="fas fa-edit "></i></button>
                                             <form action="/Admin/SesiUjian/arsipSesiUjian/<?= $key['id']; ?>" method="POST" class="d-inline">
                                                 <button type="submit" class="btn btn-secondary btn-sm" id="btn-archive-kategori" title="Arsip" onclick="return confirm('Apakah anda ingin mengarsipkan sesi <?= $key['nama_ujian']; ?> ?')"><i class="fas fa-archive "></i></button>
                                             </form>
@@ -110,108 +97,8 @@
 <!-- End of Main Content -->
 
 <!-- Modal Add Sesi Ujian -->
-<div class="modal fade" id="addSesi" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Tambah <?= $judul ?></h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-                <form method="POST" enctype="multipart/form-data" action="<?= base_url('Admin/SesiUjian/addSesiUjian') ?>">
-                    <div class="form-group">
-                        <label>Nama Ujian</label>
-                        <input maxlength="100" required autocomplete="off" class="form-control" type="text" name="nama_param" placeholder="Masukkan nama ujian..." />
-                    </div>
-                    <div class="form-group">
-                        <label>Lokasi Ujian</label>
-                        <input maxlength="100" required autocomplete="off" class="form-control" type="text" name="lokasi_param" placeholder="Masukkan lokasi ujian..." />
-                    </div>
-                    <div class="row">
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label>Tanggal Ujian</label>
-                                <input required type="date" class="form-control" name="tanggal_ujian_param">
-                            </div>
-                        </div>
-                        <div class="col-6">
-                            <div class="form-group">
-                                <label>Jam Ujian</label>
-                                <input required type="time" class="form-control" name="jam_ujian_param" min="">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <label>Durasi</label>
-                        <input required autocomplete="off" class="form-control" type="number" min="0" name="durasi_param" placeholder="Masukkan durasi dalam menit..." />
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                        <button type="submit" name="buttonAddSesiUjian" class="btn btn-primary">Simpan</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- End of Modal Add Sesi Ujian -->
+<?= view('modal/addSesiUjian') ?>
 
 <!-- Modal Edit Sesi Ujian -->
-<?php
-$no = 0;
-foreach ($sesi as $row) : $no++;
-    $waktu_mulai_param = explode(' ', $row['waktu_mulai']);
-?>
-    <div class="modal fade" id="editSesi<?= $row['id']; ?>" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLongTitle">Edit <?= $judul ?></h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form method="POST" enctype="multipart/form-data" action="<?= base_url('Admin/SesiUjian/editSesiUjian') ?>">
-                        <div class="form-group">
-                            <label>Nama Ujian</label>
-                            <input maxlength="100" autocomplete="off" required class="form-control" type="text" name="nama_param" placeholder="Masukkan nama ujian..." value="<?= $row['nama_ujian'] ?>" />
-                        </div>
-                        <div class="form-group">
-                            <label>Lokasi Ujian</label>
-                            <input maxlength="100" autocomplete="off" required class="form-control" type="text" name="lokasi_param" placeholder="Masukkan lokasi ujian..." value="<?= $row['tempat_ujian'] ?>" />
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label>Tanggal Ujian</label>
-                                    <input type="date" required class="form-control" name="tanggal_ujian_param" value="<?= $waktu_mulai_param[0] ?>">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="form-group">
-                                    <label>Jam Ujian</label>
-                                    <input type="time" required class="form-control" name="jam_ujian_param" value="<?= $waktu_mulai_param[1] ?>">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label>Durasi</label>
-                            <input autocomplete="off" required class="form-control" type="number" min="0" name="durasi_param" placeholder="Masukkan durasi dalam menit..." value="<?= $row['durasi'] ?>" />
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" type="hidden" name="id_param" value="<?= $row['id'] ?>" />
-                        </div>
-                        <div class=" modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
-                            <button type="submit" name="buttonEditSesiUjian" class="btn btn-primary">Simpan</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-<?php endforeach; ?>
-<!-- End of Modal Edit Sesi Ujian -->
+<?= view('modal/editSesiUjian') ?>
+<?= $this->endSection(); ?>

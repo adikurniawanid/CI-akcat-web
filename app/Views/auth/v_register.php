@@ -27,7 +27,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="email">Alamat Email</label>
-                                    <input pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$"> required type="email" class="form-control form-control-user" id="email" placeholder="Masukan alamat e-mail...">
+                                    <input pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$" required type="email" class="form-control form-control-user" id="email" placeholder="Masukan alamat e-mail...">
                                 </div>
                                 <div class="form-group">
                                     <label for="instansi">Instansi</label>

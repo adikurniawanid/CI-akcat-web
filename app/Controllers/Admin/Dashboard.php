@@ -12,10 +12,6 @@ class Dashboard extends BaseController
             'judul' => 'Dashboard'
         ];
 
-        echo view('templates/v_header', $data);
-        echo view('templates/v_sidebar');
-        echo view('templates/v_topbar');
-        echo view('admin/index');
-        echo view('templates/v_footer');
+        return view('admin/index', $data);
     }
 }

@@ -27,9 +27,9 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
+            <!-- <div class="sidebar-heading">
                 Bank Soal
-            </div>
+            </div> -->
 
             <!-- Nav Item - Kategori -->
             <li class="nav-item">
@@ -37,6 +37,9 @@
                     <i class="fas fa-fw fa-layer-group"></i>
                     <span>Kategori Soal</span></a>
             </li>
+
+            <hr class="sidebar-divider">
+
             <!-- Nav Item - Pertanyaan -->
             <li class="nav-item">
                 <a class="nav-link" href="<?= base_url('Admin/Pertanyaan'); ?>">
@@ -48,9 +51,9 @@
             <hr class="sidebar-divider">
 
             <!-- Heading -->
-            <div class="sidebar-heading">
+            <!-- <div class="sidebar-heading">
                 Sesi Ujian
-            </div>
+            </div> -->
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -59,11 +62,10 @@
                     <span>Sesi Ujian</span></a>
             </li>
             <!-- Nav Item - Pages Collapse Menu -->
-            <!-- <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('Admin/NilaiUjian'); ?>">
-                    <i class="fas fa-fw fa-chart-bar"></i>
-                    <span>Nilai Ujian</span></a>
-            </li> -->
+
+
+
+            <hr class="sidebar-divider">
 
             <!-- Nav Item - Pages Collapse Menu -->
             <li class="nav-item">
@@ -71,6 +73,15 @@
                     <i class="fas fa-fw fa-user-circle"></i>
                     <span>Peserta</span></a>
             </li>
+
+            <hr class="sidebar-divider">
+
+            <li class="nav-item">
+                <a class="nav-link" href="<?= base_url('Admin/NilaiUjian'); ?>">
+                    <i class="fas fa-fw fa-chart-bar"></i>
+                    <span>Nilai Ujian</span></a>
+            </li>
+
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
 

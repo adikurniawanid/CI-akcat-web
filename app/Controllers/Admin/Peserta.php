@@ -20,11 +20,7 @@ class Peserta extends BaseController
             'jenisKelamin' => $this->model->get_jenis_kelamin_list()
         ];
 
-        echo view('templates/v_header', $data);
-        echo view('templates/v_sidebar');
-        echo view('templates/v_topbar');
-        echo view('admin/v_peserta');
-        echo view('templates/v_footer');
+        return view('admin/v_peserta', $data);
     }
 
     public function arsip()
@@ -33,11 +29,7 @@ class Peserta extends BaseController
             'judul' => 'Arsip Peserta',
             'peserta' => $this->model->get_peserta_arsip_list()
         ];
-        echo view('templates/v_header', $data);
-        echo view('templates/v_sidebar');
-        echo view('templates/v_topbar');
-        echo view('admin/v_pesertaArsip');
-        echo view('templates/v_footer');
+        return view('admin/v_pesertaArsip', $data);
     }
 
     public function deletePesertaArsip($id_param)

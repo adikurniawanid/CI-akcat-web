@@ -4,6 +4,7 @@ namespace App\Controllers\Admin;
 
 use App\Controllers\BaseController;
 use App\Models\M_Kategori;
+use App\Models\M_Pertanyaan;
 use CodeIgniter\Validation\Rules;
 
 class Kategori extends BaseController
@@ -11,6 +12,7 @@ class Kategori extends BaseController
     public function __construct()
     {
         $this->model = new M_Kategori();
+        $this->modelPertanyaan = new M_Pertanyaan();
     }
 
     public function index()
@@ -20,11 +22,7 @@ class Kategori extends BaseController
             'kategori' => $this->model->get_kategori_list()
         ];
 
-        echo view('templates/v_header', $data);
-        echo view('templates/v_sidebar');
-        echo view('templates/v_topbar');
-        echo view('admin/v_kategori');
-        echo view('templates/v_footer');
+        return view('admin/v_kategori', $data);
     }
 
     public function addKategori()
@@ -153,11 +151,7 @@ class Kategori extends BaseController
             'kategori' => $this->model->get_kategori_arsip_list()
         ];
 
-        echo view('templates/v_header', $data);
-        echo view('templates/v_sidebar');
-        echo view('templates/v_topbar');
-        echo view('admin/v_kategoriArsip');
-        echo view('templates/v_footer');
+        return view('admin/v_kategoriArsip', $data);
     }
 
     public function deleteKategoriArsip($id_param)
@@ -190,5 +184,16 @@ class Kategori extends BaseController
     {
         $temp = $this->model->get_jumlah_soal_by_kategori($id_param);
         return $jumlahSoal = $temp[0]['jumlah_soal'];
+    }
+
+    public function Detail($id_param)
+    {
+        $data = [
+            'judul' => 'Detail Kategori Soal',
+            'pertanyaan' => $this->modelPertanyaan->get_pertanyaan_list_by_kategori_id($id_param),
+            'kategori_list' => $this->model->get_kategori_list()
+        ];
+
+        return view('admin/v_kategoriDetail', $data);
     }
 }

@@ -1,30 +1,16 @@
+<?php
+echo $this->extend('/templates/v_layout');
+echo $this->section('content');
+?>
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800"><?= $judul; ?></h1>
 
-    <?php
+    <!-- Validation -->
+    <?= view('validation/flashData') ?>
 
-    use App\Controllers\Kategori;
-
-    if (session()->get('message')) : ?>
-        <div class="alert alert-success alert-alert-dismissible fade show " role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <?= session()->getFlashData('message'); ?>
-        </div>
-    <?php endif
-    ?>
-    <?php if (session()->get('err')) : ?>
-        <div class="alert alert-danger alert-alert-dismissible fade show " role="alert">
-            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            <?= session()->getFlashData('err'); ?>
-        </div>
-    <?php endif ?>
     <div class="card border-left-primary">
         <div class="card-body ">
             <a href="<?= base_url('Admin/Pertanyaan'); ?>" class="btn btn-primary btn-icon-split mb-3">
@@ -40,7 +26,7 @@
                 </div>
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table class="table table-bordered " id="toDataTable" width="100%" cellspacing="0">
+                        <table class="table table-bordered table-hover" id="toDataTable" width="100%" cellspacing="0">
                             <thead class="text-center">
                                 <tr>
                                     <th class="col-1">No</th>
@@ -92,3 +78,4 @@
 
 </div>
 <!-- End of Main Content -->
+<?= $this->endSection(); ?>

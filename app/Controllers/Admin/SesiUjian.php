@@ -21,11 +21,7 @@ class SesiUjian extends BaseController
             'sesi' => $model->get_sesi_ujian_list()
         ];
 
-        echo view('templates/v_header', $data);
-        echo view('templates/v_sidebar');
-        echo view('templates/v_topbar');
-        echo view('admin/v_sesiUjian');
-        echo view('templates/v_footer');
+        return view('admin/v_sesiUjian', $data);
     }
 
     public function arsip()
@@ -35,11 +31,7 @@ class SesiUjian extends BaseController
             'sesi' => $this->model->get_sesi_ujian_arsip_list()
         ];
 
-        echo view('templates/v_header', $data);
-        echo view('templates/v_sidebar');
-        echo view('templates/v_topbar');
-        echo view('admin/v_sesiUjianArsip');
-        echo view('templates/v_footer');
+        return view('admin/v_sesiUjianArsip', $data);
     }
 
     public function addSesiUjian()
@@ -174,7 +166,6 @@ class SesiUjian extends BaseController
 
                 $success = $this->model->edit_sesi_ujian($data['id_param'], $data['nama_param'], $data['lokasi_param'], $waktu_mulai_param, $data['durasi_param']);
 
-                // echo $data['id_param'], $data['nama_param'], $data['lokasi_param'], $waktu_mulai_param, $data['durasi_param'];
                 if ($success) {
                     $message = 'Sesi Ujian <b>' . $data['nama_param'] . '</b> berhasil diedit';
                     session()->setFlashData('message', $message);

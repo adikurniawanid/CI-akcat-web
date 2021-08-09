@@ -68,4 +68,14 @@ class M_Pertanyaan extends Model
             return $this->db->query("call edit_pertanyaan('$id_param', '$pertanyaan_param', '$kategori_id_param', '$opsi_a_param', '$opsi_b_param', '$opsi_c_param', '$opsi_d_param', '$kunci', '$gambar_param', '$audio_param')");
         }
     }
+
+    public function get_pertanyaan_list_by_kategori_id($id_param)
+    {
+        return $this->db->query("call get_pertanyaan_list_by_kategori_id('$id_param')")->getResultArray();
+    }
+
+    public function get_pertanyaan_detail_by_id($id_param)
+    {
+        return $this->db->query("call get_pertanyaan_detail_by_id('$id_param')")->getresultArray();
+    }
 }

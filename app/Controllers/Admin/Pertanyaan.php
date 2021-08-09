@@ -16,18 +16,13 @@ class Pertanyaan extends BaseController
 
     public function index()
     {
-
         $data = [
             'judul' => 'Pertanyaan',
             'pertanyaan' => $this->model->get_pertanyaan_list(),
             'kategori_list' => $this->modelKategori->get_kategori_list()
         ];
 
-        echo view('templates/v_header', $data);
-        echo view('templates/v_sidebar');
-        echo view('templates/v_topbar');
-        echo view('admin/v_pertanyaan');
-        echo view('templates/v_footer');
+        return view('admin/v_pertanyaan', $data);
     }
 
     public function arsipPertanyaan($id_param)
@@ -62,11 +57,7 @@ class Pertanyaan extends BaseController
             'judul' => 'Arsip Pertanyaan',
             'pertanyaan' => $this->model->get_pertanyaan_arsip_list()
         ];
-        echo view('templates/v_header', $data);
-        echo view('templates/v_sidebar');
-        echo view('templates/v_topbar');
-        echo view('admin/v_pertanyaanArsip');
-        echo view('templates/v_footer');
+        return view('admin/v_pertanyaanArsip', $data);
     }
 
     public function recoveryPertanyaan($id_param)
@@ -313,5 +304,15 @@ class Pertanyaan extends BaseController
         } else {
             return redirect()->to(base_url('Admin/Pertanyaan'));
         }
+    }
+
+    public function Detail($id_param)
+    {
+        $data = [
+            'judul' => 'Detail Pertanyaan',
+            'pertanyaan' => $this->model->get_pertanyaan_detail_by_id($id_param)
+        ];
+
+        return view('admin/v_pertanyaanDetail', $data);
     }
 }

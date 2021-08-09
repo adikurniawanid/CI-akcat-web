@@ -55,9 +55,4 @@ class M_Kategori extends Model
     {
         return $this->db->query("call edit_kategori('$id_param', '$nama_param', $nilai_param)");
     }
-
-    public function get_jumlah_soal_by_kategori($id_param)
-    {
-        return $this->db->query("call get_jumlah_soal_by_kategori('$id_param')")->getresultArray();
-    }
 }
