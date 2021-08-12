@@ -64,8 +64,8 @@ echo $this->section('content');
                                         <td><?= $key['nama']; ?></td>
                                         <td><?= $key['nilai'] ?></td>
                                         <td>
-                                            <!-- <button type="button" data-toggle="modal" data-target="#modalEditKategori<?= $key['id']; ?>" class="btn btn-success btn-sm" id="btn-edit-kategori" title="Edit"><i class="fas fa-edit "></i></button> -->
-                                            <button type="button" data-toggle="modal" data-target="#modalEditKategori" class="btn btn-danger btn-sm" id="btn-edit-kategori" title="Edit"><i class="fas fa-edit "></i></button>
+                                            <button type="button" data-toggle="modal" data-target="#modalEditKategori<?= $key['id']; ?>" class="btn btn-success btn-sm" id="btn-edit-kategori" title="Edit"><i class="fas fa-edit "></i></button>
+                                            <!-- <button type="button" data-toggle="modal" data-target="#modalEditKategori" class="btn btn-danger btn-sm" id="btn-edit-kategori" title="Edit"><i class="fas fa-edit "></i></button> -->
                                             <form action="/Admin/kategori/arsipKategori/<?= $key['id']; ?>" method="POST" class="d-inline">
                                                 <button type="submit" class="btn btn-secondary btn-sm" id="btn-archive-kategori" title="Arsip" onclick="return confirm('Apakah anda ingin mengarsipkan kategori <?= $key['nama']; ?> ?')"><i class="fas fa-archive "></i></button>
                                             </form>

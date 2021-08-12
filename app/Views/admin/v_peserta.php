@@ -1,3 +1,17 @@
+<div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <p>Apakah anda yakin menyelesaikan sesi ujian</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-success">selesai</button>
+                <button type="button" class="btn btn-danger" data-dismiss="modal">batal</button>
+            </div>
+        </div>
+    </div>
+</div>
+
 <?php
 echo $this->extend('/templates/v_layout');
 echo $this->section('content');
