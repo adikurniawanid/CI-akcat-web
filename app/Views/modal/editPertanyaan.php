@@ -11,7 +11,9 @@ foreach ($pertanyaan as $row) : $no++; ?>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" enctype="multipart/form-data" action="<?= base_url('Admin/Pertanyaan/editPertanyaan') ?>">
+                    <form method="POST" enctype="multipart/form-data" action="<?= base_url('Admin/Pertanyaan') ?>">
+                        <?= csrf_field(); ?>
+                        <input type="hidden" name="_method" value="PUT">
                         <div class="form-group">
                             <label>Kategori Soal</label>
                             <?php $selectedKategori = $row['kategori_id']; ?>

@@ -32,42 +32,52 @@ class Peserta extends BaseController
         return view('admin/v_pesertaArsip', $data);
     }
 
-    public function deletePesertaArsip($id_param)
-    {
-        $temp = $this->model->get_peserta_name($id_param);
-        $namaTemp = $temp[0]['nama'];
-        $success = $this->model->delete_peserta($id_param);
+    // public function deletePesertaArsip($id_param)
+    // {
+    //     $temp = $this->model->get_peserta_name($id_param);
+    //     $namaTemp = $temp[0]['nama'];
+    //     $success = $this->model->delete_peserta($id_param);
 
-        if ($success) {
-            $message = 'Arsip peserta : <b>' . $namaTemp . '</b> berhasil dihapus';
-            session()->setFlashData('message', $message);
-            return redirect()->to(base_url('Admin/Peserta/Arsip'));
-        }
-    }
+    //     if ($success) {
+    //         $message = 'Arsip peserta : <b>' . $namaTemp . '</b> berhasil dihapus';
+    //         session()->setFlashData('message', $message);
+    //         return redirect()->to(base_url('Admin/Peserta/Arsip'));
+    //     }
+    // }
 
-    public function recoveryPeserta($id_param)
-    {
-        $temp = $this->model->get_peserta_name($id_param);
-        $namaTemp = $temp[0]['nama'];
-        $success = $this->model->recovery_peserta($id_param);
+    // public function recoveryPeserta($id_param)
+    // {
+    //     $temp = $this->model->get_peserta_name($id_param);
+    //     $namaTemp = $temp[0]['nama'];
+    //     $success = $this->model->recovery_peserta($id_param);
 
-        if ($success) {
-            $message = 'Peserta <b>' . $namaTemp . '</b> berhasil dipulihkan';
-            session()->setFlashData('message', $message);
-            return redirect()->to(base_url('Admin/Peserta/Arsip'));
-        }
-    }
+    //     if ($success) {
+    //         $message = 'Peserta <b>' . $namaTemp . '</b> berhasil dipulihkan';
+    //         session()->setFlashData('message', $message);
+    //         return redirect()->to(base_url('Admin/Peserta/Arsip'));
+    //     }
+    // }
 
     public function arsipPeserta($id_param)
     {
         $temp = $this->model->get_peserta_name($id_param);
         $namaTemp = $temp[0]['nama'];
         $success = $this->model->arsip_peserta($id_param);
+        $data = [
+            'status' =>
+            $this->request->getPost('status'),
+        ];
 
         if ($success) {
-            $message = 'Peserta : <b>' . $namaTemp . '</b> berhasil diarsipkan';
-            session()->setFlashData('message', $message);
-            return redirect()->to(base_url('Admin/Peserta'));
+            if ($data['status'] == 'recovery') {
+                $message = 'Peserta : <b>' . $namaTemp . '</b> berhasil dipulihkan';
+                session()->setFlashData('message', $message);
+            } else {
+                $message = 'Peserta : <b>' . $namaTemp . '</b> berhasil diarsipkan';
+                session()->setFlashData('message', $message);
+            }
+
+            return redirect()->to($_SERVER['HTTP_REFERER']);
         }
     }
 
@@ -80,7 +90,7 @@ class Peserta extends BaseController
         if ($success) {
             $message = 'Peserta : <b>' . $namaTemp . '</b> berhasil dihapus';
             session()->setFlashData('message', $message);
-            return redirect()->to(base_url('Admin/Peserta'));
+            return redirect()->to($_SERVER['HTTP_REFERER']);
         }
     }
 
@@ -95,7 +105,6 @@ class Peserta extends BaseController
                         'required' => '{field} tidak boleh kosong.',
                         'max_length' => '{field} tidak boleh lebih dari 50 karakter.'
                     ]
-
                 ],
                 'no_hp_param' => [
                     'label' => 'No Handphone',
@@ -165,7 +174,7 @@ class Peserta extends BaseController
                     $data['id_param'],
                     $data['username_param'],
                     $data['email_param'],
-                    $data['password_param'],
+                    password_hash($data['password_param'], PASSWORD_BCRYPT),
                     $data['nama_param'],
                     $data['jenis_kelamin_id_param'],
                     $data['no_hp_param'],
@@ -252,7 +261,7 @@ class Peserta extends BaseController
                 $success = $this->model->edit_peserta(
                     $data['id_param'],
                     $data['email_param'],
-                    $data['password_param'],
+                    password_hash($data['password_param'], PASSWORD_BCRYPT),
                     $data['nama_param'],
                     $data['jenis_kelamin_id_param'],
                     $data['no_hp_param'],

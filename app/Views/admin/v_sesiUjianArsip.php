@@ -1,5 +1,5 @@
 <?php
-echo $this->extend('/templates/v_layout');
+echo $this->extend('/templates/admin/v_layout');
 echo $this->section('content');
 ?>
 <!-- Begin Page Content -->
@@ -13,7 +13,7 @@ echo $this->section('content');
 
     <div class="card border-left-primary">
         <div class="card-body">
-            <a href="<?= base_url('Admin/SesiUjian'); ?>" class="btn btn-primary btn-icon-split mb-3">
+            <a href="<?= base_url('Admin/SesiUjian') ?>" class="btn btn-primary btn-icon-split mb-3">
                 <span class="icon text-white-50">
                     <i class=" fa fa-arrow-left"></i>
                 </span>
@@ -64,10 +64,16 @@ echo $this->section('content');
                                         <td><?= $key['waktu_selesai'] ?></td>
                                         <td><?= $key['durasi'] ?><br>Menit</td>
                                         <td>
-                                            <form action="/Admin/SesiUjian/recoverySesiUjian/<?= $key['id']; ?>" method="POST" class="d-inline">
+
+                                            <form action="/Admin/SesiUjian/<?= $key['id']; ?>" method="POST" class="d-inline">
+                                                <?= csrf_field(); ?>
+                                                <input type="hidden" name="_method" value="PATCH">
+                                                <input type="hidden" name="status" value="recovery">
                                                 <button type="submit" class="btn btn-secondary btn-sm" id="btn-archive-kategori" title="Pulih" onclick="return confirm('Apakah anda ingin memulihkan arsip sesi <?= $key['nama_ujian']; ?> ?')"><i class="fas fa-archive "></i></button>
                                             </form>
-                                            <form action="/Admin/SesiUjian/deleteSesiUjianArsip/<?= $key['id']; ?>" method="POST" class="d-inline">
+                                            <form action="/Admin/SesiUjian/<?= $key['id']; ?>" method="POST" class="d-inline">
+                                                <?= csrf_field(); ?>
+                                                <input type="hidden" name="_method" value="DELETE">
                                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin menghapus arsip sesi <?= $key['nama_ujian']; ?> ?')" title="Hapus"><i class="fas fa-trash"></i></button>
                                             </form>
                                         </td>

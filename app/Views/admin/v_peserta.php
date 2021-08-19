@@ -1,19 +1,5 @@
-<div class="modal" tabindex="-1" role="dialog">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-body">
-                <p>Apakah anda yakin menyelesaikan sesi ujian</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-success">selesai</button>
-                <button type="button" class="btn btn-danger" data-dismiss="modal">batal</button>
-            </div>
-        </div>
-    </div>
-</div>
-
 <?php
-echo $this->extend('/templates/v_layout');
+echo $this->extend('/templates/admin/v_layout');
 echo $this->section('content');
 ?>
 <!-- Begin Page Content -->
@@ -31,14 +17,14 @@ echo $this->section('content');
                 <span class="icon text-white-50">
                     <i class="fa fa-plus"></i>
                 </span>
-                <span class="text">Tambah Peserta</span>
+                <span class="text">Tambah Data</span>
             </a>
 
-            <a href="<?= base_url('Admin/Peserta/Arsip'); ?>" class="btn btn-primary btn-icon-split mb-3 float-right">
+            <a href="<?= base_url('Admin/Arsip/Peserta'); ?>" class="btn btn-primary btn-icon-split mb-3 float-right">
                 <span class="icon text-white-50">
                     <i class=" fa fa-save"></i>
                 </span>
-                <span class="text">Arsip Peserta</span>
+                <span class="text">Arsip Data</span>
             </a>
 
             <!-- DataTables -->
@@ -81,10 +67,15 @@ echo $this->section('content');
                                         <td><?= $key['instansi'] ?></td>
                                         <td>
                                             <button type="button" data-toggle="modal" data-target="#modalEditPeserta<?= $key['id']; ?>" class="btn btn-success btn-sm" id="btn-edit-kategori" title="Edit"><i class="fas fa-edit "></i></button>
-                                            <form action="/Admin/Peserta/arsipPeserta/<?= $key['id']; ?>" method="POST" class="d-inline">
+                                            <form action="/Admin/Peserta/<?= $key['id']; ?>" method="POST" class="d-inline">
+                                                <?= csrf_field(); ?>
+                                                <input type="hidden" name="_method" value="PATCH">
+                                                <input type="hidden" name="status" value="arsip">
                                                 <button type="submit" class="btn btn-secondary btn-sm" id="btn-archive-kategori" title="Arsip" onclick="return confirm('Apakah anda ingin mengarsipkan peserta <?= $key['nama']; ?> ?')"><i class="fas fa-archive "></i></button>
                                             </form>
-                                            <form action="/Admin/Peserta/deletePeserta/<?= $key['id']; ?>" method="POST" class="d-inline">
+                                            <form action="/Admin/Peserta/<?= $key['id']; ?>" method="post" class="d-inline">
+                                                <?= csrf_field(); ?>
+                                                <input type="hidden" name="_method" value="DELETE">
                                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin menghapus peserta <?= $key['nama']; ?> ?')" title="Hapus"><i class="fas fa-trash"></i></button>
                                             </form>
                                         </td>

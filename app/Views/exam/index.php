@@ -1,5 +1,5 @@
 <?php
-echo $this->extend('/exam/v_layout');
+echo $this->extend('/templates/exam/v_layout');
 echo $this->section('content');
 ?>
 

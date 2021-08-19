@@ -1,5 +1,5 @@
 <?php
-echo $this->extend('/templates/v_layout');
+echo $this->extend('/templates/admin/v_layout');
 echo $this->section('content');
 ?>
 
@@ -80,6 +80,6 @@ echo $this->section('content');
 <!-- End of Main Content -->
 
 <!-- Modal Edit Pertanyaan -->
-<?= view('modal/EditPertanyaan') ?>
+<?= view('modal/editPertanyaan') ?>
 
 <?= $this->endSection(); ?>

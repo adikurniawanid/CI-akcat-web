@@ -106,8 +106,15 @@ class SesiUjian extends BaseController
         }
     }
 
-    public function editSesiUjian()
+    public function editSesiUjian($id_param)
     {
+        $data = [
+            'judul' => 'Edit Sesi Ujian',
+            'sesi' => $this->model->get_detail_edit_sesi_ujian($id_param),
+        ];
+
+        echo view('admin/v_sesiUjianEdit', $data);
+
         if (isset($_POST['buttonEditSesiUjian'])) {
             $val = $this->validate([
                 'nama_param' => [
@@ -182,11 +189,21 @@ class SesiUjian extends BaseController
         $temp = $this->model->get_sesi_ujian_name($id_param);
         $nameTemp = $temp[0]['nama'];
         $success = $this->model->arsip_sesi_ujian($id_param);
+        $data = [
+            'status' =>
+            $this->request->getPost('status'),
+        ];
 
         if ($success) {
-            $message = 'Sesi <b>' . $nameTemp . '</b> berhasil diarsipkan';
-            session()->setFlashData('message', $message);
-            return redirect()->to(base_url('Admin/SesiUjian'));
+            if ($data['status'] == 'recovery') {
+                $message = 'Sesi <b>' . $nameTemp . '</b> berhasil dipulihkan';
+                session()->setFlashData('message', $message);
+            } else {
+                $message = 'Sesi <b>' . $nameTemp . '</b> berhasil diarsipkan';
+                session()->setFlashData('message', $message);
+            }
+
+            return redirect()->to($_SERVER['HTTP_REFERER']);
         }
     }
 
@@ -199,7 +216,7 @@ class SesiUjian extends BaseController
         if ($success) {
             $message = 'Sesi <b>' . $nameTemp . '</b> berhasil dihapus';
             session()->setFlashData('message', $message);
-            return redirect()->to(base_url('Admin/SesiUjian'));
+            return redirect()->to($_SERVER['HTTP_REFERER']);
         }
     }
 
@@ -216,16 +233,16 @@ class SesiUjian extends BaseController
         }
     }
 
-    public function recoverySesiUjian($id_param)
-    {
-        $temp = $this->model->get_sesi_ujian_name($id_param);
-        $nameTemp = $temp[0]['nama'];
-        $success = $this->model->recovery_sesi_ujian($id_param);
+    // public function recoverySesiUjian($id_param)
+    // {
+    //     $temp = $this->model->get_sesi_ujian_name($id_param);
+    //     $nameTemp = $temp[0]['nama'];
+    //     $success = $this->model->recovery_sesi_ujian($id_param);
 
-        if ($success) {
-            $message = 'Sesi <b>' . $nameTemp . '</b> berhasil dipulihkan';
-            session()->setFlashData('message', $message);
-            return redirect()->to(base_url('Admin/SesiUjian/Arsip'));
-        }
-    }
+    //     if ($success) {
+    //         $message = 'Sesi <b>' . $nameTemp . '</b> berhasil dipulihkan';
+    //         session()->setFlashData('message', $message);
+    //         return redirect()->to(base_url('Admin/SesiUjian/Arsip'));
+    //     }
+    // }
 }

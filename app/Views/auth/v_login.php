@@ -4,7 +4,6 @@
 
 		<!-- Outer Row -->
 		<div class="row justify-content-center">
-
 			<div class="col-xl-10 col-lg-12 col-md-9">
 
 				<div class="card o-hidden border-0 shadow-lg my-5">
@@ -18,18 +17,21 @@
 										<h1 class="h4 text-gray-900 mb-4">Selamat Datang</h1>
 										<br>
 									</div>
-									<form class="user" action="<?= 'Home/login' ?>">
+
+									<form method="POST" class="user" enctype="multipart/form-data" action="<?= base_url('Auth/Login/Login') ?>">
+										<!-- <form class="user" action="<?= 'Auth/Login/Login' ?>"> -->
+										<?= view('validation/flashData') ?>
 										<div class="form-group">
-											<label for="noPeserta">Email atau Username</label>
-											<input type="text" class="form-control form-control-user" id="emailOrUsername" placeholder="Masukan email atau username...">
+											<label for="email_username_param">Email atau Username</label>
+											<input type="text" class="form-control form-control-user" name="email_username_param" id="email_username_param" placeholder="Masukan email atau username...">
 										</div>
 										<!-- <div class="form-group">
 											<label for="kodeSesi">Kode Sesi</label>
 											<input type="text" class="form-control form-control-user" id="kodeSesi" placeholder="Masukan kode sesi...">
 										</div> -->
 										<div class="form-group">
-											<label for="password">Kata Sandi</label>
-											<input type="password" class="form-control form-control-user" id="password" placeholder="Masukan kata sandi...">
+											<label for="password_param">Kata Sandi</label>
+											<input type="password" class="form-control form-control-user" id="password_param" name="password_param" placeholder="Masukan kata sandi...">
 										</div>
 										<!-- <div class="form-group">
 											<div class="custom-control custom-checkbox small">
@@ -38,9 +40,16 @@
 											</div>
 										</div> -->
 										<br>
-										<a href="<?= base_url('Auth/Login/Login') ?>" class="btn btn-primary btn-user btn-block">
-											Masuk
+										<button type="submit" name="buttonLogin" class="btn btn-primary btn-user btn-block">Masuk</button>
+										<a href="<?= base_url('Admin') ?>" class="btn btn-danger btn-user btn-block">
+											Admin
 										</a>
+										<a href="<?= base_url('Exam') ?>" class="btn btn-danger btn-user btn-block">
+											Exam
+										</a>
+										<!-- <a href="<?= base_url('Auth/Login/Login') ?>" class="btn btn-primary btn-user btn-block">
+											Masuk
+										</a> -->
 										<!-- <hr>
 										<a href="index.html" class="btn btn-google btn-user btn-block">
 											<i class="fab fa-google fa-fw"></i> Login with Google

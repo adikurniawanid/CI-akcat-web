@@ -1,5 +1,5 @@
 <?php
-echo $this->extend('/templates/v_layout');
+echo $this->extend('/templates/admin/v_layout');
 echo $this->section('content');
 ?>
 <!-- Begin Page Content -->
@@ -16,14 +16,14 @@ echo $this->section('content');
                 <span class="icon text-white-50">
                     <i class="fa fa-plus"></i>
                 </span>
-                <span class="text">Tambah Sesi</span>
+                <span class="text">Tambah Data</span>
             </a>
 
-            <a href="<?= base_url('Admin/SesiUjian/Arsip'); ?>" class="btn btn-primary btn-icon-split mb-3 float-right">
+            <a href="<?= base_url('Admin/Arsip/SesiUjian'); ?>" class="btn btn-primary btn-icon-split mb-3 float-right">
                 <span class="icon text-white-50">
                     <i class=" fa fa-save"></i>
                 </span>
-                <span class="text">Arsip Sesi</span>
+                <span class="text">Arsip Data</span>
             </a>
 
             <!-- DataTales -->
@@ -71,11 +71,21 @@ echo $this->section('content');
                                         <td><?= $key['waktu_selesai'] ?></td>
                                         <td><?= $key['durasi'] ?><br>Menit</td>
                                         <td>
-                                            <button type="button" data-toggle="modal" data-target="#modalEditSesi<?= $key['id']; ?>" class="btn btn-success btn-sm" id="btn-edit-Sesi" title="Edit"><i class="fas fa-edit "></i></button>
-                                            <form action="/Admin/SesiUjian/arsipSesiUjian/<?= $key['id']; ?>" method="POST" class="d-inline">
-                                                <button type="submit" class="btn btn-secondary btn-sm" id="btn-archive-kategori" title="Arsip" onclick="return confirm('Apakah anda ingin mengarsipkan sesi <?= $key['nama_ujian']; ?> ?')"><i class="fas fa-archive "></i></button>
+                                            <form action="/Admin/SesiUjian/<?= $key['id']; ?>" method="POST" class="d-inline">
+                                                <?= csrf_field(); ?>
+                                                <input type="hidden" name="_method" value="PUT">
+                                                <input type="hidden" name="id" value="<?= $key['id']; ?>">
+                                                <button type="submit" class="btn btn-success btn-sm" id="btn-edit-kategori" title="Edit"><i class="fas fa-edit "></i></button>
                                             </form>
-                                            <form action="/Admin/SesiUjian/deleteSesiUjian/<?= $key['id']; ?>" method="POST" class="d-inline">
+                                            <form action="/Admin/SesiUjian/<?= $key['id']; ?>" method="POST" class="d-inline">
+                                                <?= csrf_field(); ?>
+                                                <input type="hidden" name="_method" value="PATCH">
+                                                <input type="hidden" name="status" value="arsip">
+                                                <button type="submit" class="btn btn-secondary btn-sm" title="Arsip" onclick="return confirm('Apakah anda ingin mengarsipkan sesi <?= $key['nama_ujian']; ?> ?')"><i class="fas fa-archive "></i></button>
+                                            </form>
+                                            <form action="/Admin/SesiUjian/<?= $key['id']; ?>" method="post" class="d-inline">
+                                                <?= csrf_field(); ?>
+                                                <input type="hidden" name="_method" value="DELETE">
                                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin menghapus sesi <?= $key['nama_ujian']; ?> ?')" title="Hapus"><i class="fas fa-trash"></i></button>
                                             </form>
                                         </td>
@@ -98,7 +108,4 @@ echo $this->section('content');
 
 <!-- Modal Add Sesi Ujian -->
 <?= view('modal/addSesiUjian') ?>
-
-<!-- Modal Edit Sesi Ujian -->
-<?= view('modal/editSesiUjian') ?>
 <?= $this->endSection(); ?>

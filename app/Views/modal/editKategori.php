@@ -11,7 +11,9 @@ foreach ($kategori as $row) : $no++; ?>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" enctype="multipart/form-data" action="<?= base_url('Admin/Kategori/editKategori') ?>">
+                    <form method="POST" enctype="multipart/form-data" action="<?= base_url('Admin/Kategori') ?>">
+                        <?= csrf_field(); ?>
+                        <input type="hidden" name="_method" value="PUT">
                         <div class="form-group">
                             <label>Nama Kategori</label>
                             <input maxlength="100" required autocomplete="off" class="form-control" type="text" name="nama_param" id="nama-param" value="<?= $row['nama'] ?>" />

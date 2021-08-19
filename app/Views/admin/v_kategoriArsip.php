@@ -1,5 +1,5 @@
 <?php
-echo $this->extend('/templates/v_layout');
+echo $this->extend('/templates/admin/v_layout');
 echo $this->section('content');
 ?>
 
@@ -14,7 +14,7 @@ echo $this->section('content');
 
     <div class="card border-left-primary">
         <div class="card-body">
-            <a href="<?= base_url('Admin/Kategori'); ?>" class="btn btn-primary btn-icon-split mb-3">
+            <a href="<?= base_url('Admin/Kategori') ?>" class="btn btn-primary btn-icon-split mb-3">
                 <span class="icon text-white-50">
                     <i class=" fa fa-arrow-left"></i>
                 </span>
@@ -54,15 +54,30 @@ echo $this->section('content');
                                     <tr>
                                         <td><?= $no; ?></td>
                                         <td><?= $key['kode'] ?></td>
-                                        <td><?= $key['nama']; ?></td>
+                                        <td>
+                                            <span style="
+  display:inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 50ch;">
+                                                <?= $key['nama']; ?>
+                                            </span>
+                                        </td>
                                         <td><?= $key['nilai'] ?></td>
                                         <td class="text-center">
-                                            <form action="<?= base_url('Admin/Kategori/recoveryKategori'); ?>/<?= $key['id']; ?>" method="POST" class="d-inline">
+                                            <form action="/Admin/Kategori/<?= $key['id']; ?>" method="POST" class="d-inline">
+                                                <?= csrf_field(); ?>
+                                                <input type="hidden" name="_method" value="PATCH">
+                                                <input type="hidden" name="status" value="recovery">
                                                 <button type="submit" class="btn btn-secondary btn-sm" title="Pulih" onclick="return confirm('Apakah anda ingin memulihkan arsip kategori <?= $key['nama']; ?> ?')"><i class="fas fa-box "></i></button>
                                             </form>
-                                            <form action="<?= base_url('Admin/Kategori/deleteKategoriArsip'); ?>/<?= $key['id']; ?>" method="POST" class="d-inline">
+                                            <form action="/Admin/Kategori/<?= $key['id']; ?>" method="POST" class="d-inline">
+                                                <?= csrf_field(); ?>
+                                                <input type="hidden" name="_method" value="DELETE">
                                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin menghapus arsip kategori <?= $key['nama']; ?> ?')" title="Hapus"><i class="fas fa-trash"></i></button>
                                             </form>
+
                                         </td>
                                     </tr>
                                 <?php $no++;

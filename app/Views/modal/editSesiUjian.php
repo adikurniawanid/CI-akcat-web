@@ -13,7 +13,9 @@ foreach ($sesi as $row) : $no++;
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form method="POST" enctype="multipart/form-data" action="<?= base_url('Admin/SesiUjian/editSesiUjian') ?>">
+                    <form method="POST" enctype="multipart/form-data" action="<?= base_url('Admin/SesiUjian') ?>">
+                        <?= csrf_field(); ?>
+                        <input type="hidden" name="_method" value="PUT">
                         <div class="form-group">
                             <label>Nama Ujian</label>
                             <input maxlength="100" autocomplete="off" required class="form-control" type="text" name="nama_param" placeholder="Masukkan nama ujian..." value="<?= $row['nama_ujian'] ?>" />

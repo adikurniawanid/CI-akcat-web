@@ -8,7 +8,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" enctype="multipart/form-data" action="<?= base_url('Admin/Kategori/addKategori') ?>">
+                <form method="POST" enctype="multipart/form-data" action="<?= base_url('Admin/Kategori') ?>">
+                    <?= csrf_field(); ?>
                     <div class="form-group">
                         <label>Nama Kategori</label>
                         <input maxlength="100" autocomplete="off" class="form-control" required type="text" name="nama_param" placeholder="Masukkan nama kategori..." />

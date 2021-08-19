@@ -8,7 +8,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" enctype="multipart/form-data" action="<?= base_url('Admin/SesiUjian/addSesiUjian') ?>">
+                <form method="POST" enctype="multipart/form-data" action="<?= base_url('Admin/SesiUjian') ?>">
+                    <?= csrf_field(); ?>
                     <div class="form-group">
                         <label>Nama Ujian</label>
                         <input maxlength="100" required autocomplete="off" class="form-control" type="text" name="nama_param" placeholder="Masukkan nama ujian..." />

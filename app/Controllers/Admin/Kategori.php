@@ -15,14 +15,24 @@ class Kategori extends BaseController
         $this->modelPertanyaan = new M_Pertanyaan();
     }
 
-    public function index()
+    public function index($id_param = null)
     {
-        $data = [
-            'judul' => 'Kategori Soal',
-            'kategori' => $this->model->get_kategori_list()
-        ];
+        if (is_null($id_param) or $id_param == '') {
+            $data = [
+                'judul' => 'Kategori Soal',
+                'kategori' => $this->model->get_kategori_list()
+            ];
 
-        return view('admin/v_kategori', $data);
+            return view('admin/v_kategori', $data);
+        } else {
+            $data = [
+                'judul' => 'Detail Kategori Soal',
+                'pertanyaan' => $this->modelPertanyaan->get_pertanyaan_list_by_kategori_id($id_param),
+                'kategori_list' => $this->model->get_kategori_list()
+            ];
+
+            return view('admin/v_kategoriDetail', $data);
+        }
     }
 
     public function addKategori()
@@ -74,32 +84,49 @@ class Kategori extends BaseController
 
     public function arsipKategori($id_param)
     {
-        $temp = $this->model->get_kategori_name($id_param);
-        $nameTemp = $temp[0]['nama'];
+        d($id_param);
+        $nameTemp = $this->model->get_kategori_name($id_param);
+
         $success = $this->model->arsip_kategori($id_param);
+        $data = [
+            'status' =>
+            $this->request->getPost('status'),
+        ];
 
         if ($success) {
-            $message = 'Kategori <b>' . $nameTemp . '</b> berhasil diarsipkan';
-            session()->setFlashData('message', $message);
-            return redirect()->to(base_url('Admin/Kategori'));
+            if ($data['status'] == 'recovery') {
+                $message = 'Kategori <b>' . $nameTemp . '</b> berhasil dipulihkan';
+                session()->setFlashData('message', $message);
+            } else {
+                $message = 'Kategori <b>' . $nameTemp . '</b> berhasil diarsipkan';
+                session()->setFlashData('message', $message);
+            }
+
+            return redirect()->to($_SERVER['HTTP_REFERER']);
         }
     }
 
     public function deleteKategori($id_param)
     {
-        $temp = $this->model->get_kategori_name($id_param);
-        $nameTemp = $temp[0]['nama'];
+        $nameTemp = $this->model->get_kategori_name($id_param);
         $success = $this->model->delete_kategori($id_param);
 
         if ($success) {
             $message = 'Kategori <b>' . $nameTemp . '</b> berhasil dihapus';
             session()->setFlashData('message', $message);
-            return redirect()->to(base_url('Admin/Kategori'));
+            return redirect()->to($_SERVER['HTTP_REFERER']);
         }
     }
 
-    public function editKategori()
+    public function editKategori($id_param)
     {
+        $data = [
+            'judul' => 'Edit Kategori',
+            'kategori' => $this->model->get_detail_edit_kategori($id_param)
+        ];
+
+        echo view('admin/v_kategoriEdit', $data);
+
         if (isset($_POST['buttonEditKategori'])) {
             $val = $this->validate([
                 'nama_param' => [
@@ -152,48 +179,5 @@ class Kategori extends BaseController
         ];
 
         return view('admin/v_kategoriArsip', $data);
-    }
-
-    public function deleteKategoriArsip($id_param)
-    {
-        $temp = $this->model->get_kategori_name($id_param);
-        $nameTemp = $temp[0]['nama'];
-        $success = $this->model->delete_kategori($id_param);
-
-        if ($success) {
-            $message = 'Kategori <b>' . $nameTemp . '</b> berhasil dihapus';
-            session()->setFlashData('message', $message);
-            return redirect()->to(base_url('Admin/Kategori/Arsip'));
-        }
-    }
-
-    public function recoveryKategori($id_param)
-    {
-        $temp = $this->model->get_kategori_name($id_param);
-        $nameTemp = $temp[0]['nama'];
-        $success = $this->model->recovery_kategori($id_param);
-
-        if ($success) {
-            $message = 'Kategori <b>' . $nameTemp . '</b> berhasil dipulihkan';
-            session()->setFlashData('message', $message);
-            return redirect()->to(base_url('Admin/Kategori/Arsip'));
-        }
-    }
-
-    public function getJumlahSoalByKategori($id_param)
-    {
-        $temp = $this->model->get_jumlah_soal_by_kategori($id_param);
-        return $jumlahSoal = $temp[0]['jumlah_soal'];
-    }
-
-    public function Detail($id_param)
-    {
-        $data = [
-            'judul' => 'Detail Kategori Soal',
-            'pertanyaan' => $this->modelPertanyaan->get_pertanyaan_list_by_kategori_id($id_param),
-            'kategori_list' => $this->model->get_kategori_list()
-        ];
-
-        return view('admin/v_kategoriDetail', $data);
     }
 }

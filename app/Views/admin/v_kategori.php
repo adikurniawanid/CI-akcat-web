@@ -1,5 +1,5 @@
 <?php
-echo $this->extend('/templates/v_layout');
+echo $this->extend('/templates/admin/v_layout');
 echo $this->section('content');
 ?>
 
@@ -18,14 +18,14 @@ echo $this->section('content');
                 <span class="icon text-white-50">
                     <i class="fa fa-plus"></i>
                 </span>
-                <span class="text">Tambah Kategori</span>
+                <span class="text">Tambah Data</span>
             </a>
 
-            <a href="<?= base_url('Admin/Kategori/Arsip'); ?>" class="btn btn-primary btn-icon-split mb-3 float-right">
+            <a href="<?= base_url('Admin/Arsip/Kategori'); ?>" class="btn btn-primary btn-icon-split mb-3 float-right">
                 <span class="icon text-white-50">
                     <i class=" fa fa-save"></i>
                 </span>
-                <span class="text">Arsip Kategori</span>
+                <span class="text">Arsip Data</span>
             </a>
 
             <!-- DataTales -->
@@ -60,16 +60,36 @@ echo $this->section('content');
                                 foreach ($kategori as $key) : ?>
                                     <tr>
                                         <td><?= $no; ?></td>
-                                        <td class="bg-primary"><a href="/Admin/Kategori/Detail/<?= $key['id']; ?>" class="text-white"><?= $key['kode'] ?></a></td>
-                                        <td><?= $key['nama']; ?></td>
+
+                                        <td class="bg-primary"><a href="/Admin/Kategori/<?= $key['id']; ?>" class="text-white"><?= $key['kode'] ?></a></td>
+                                        <td>
+                                            <span style="
+  display:inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 50ch;">
+                                                <?= $key['nama']; ?>
+                                            </span>
+                                        </td>
                                         <td><?= $key['nilai'] ?></td>
                                         <td>
-                                            <button type="button" data-toggle="modal" data-target="#modalEditKategori<?= $key['id']; ?>" class="btn btn-success btn-sm" id="btn-edit-kategori" title="Edit"><i class="fas fa-edit "></i></button>
-                                            <!-- <button type="button" data-toggle="modal" data-target="#modalEditKategori" class="btn btn-danger btn-sm" id="btn-edit-kategori" title="Edit"><i class="fas fa-edit "></i></button> -->
-                                            <form action="/Admin/kategori/arsipKategori/<?= $key['id']; ?>" method="POST" class="d-inline">
+                                            <!-- <button type="button" data-toggle="modal" data-target="#modalEditKategori<?= $key['id']; ?>" class="btn btn-success btn-sm" id="btn-edit-kategori" title="Edit"><i class="fas fa-edit "></i></button> -->
+                                            <form action="/Admin/Kategori/<?= $key['id']; ?>" method="POST" class="d-inline">
+                                                <?= csrf_field(); ?>
+                                                <input type="hidden" name="_method" value="PUT">
+                                                <input type="hidden" name="id" value="<?= $key['id']; ?>">
+                                                <button type="submit" class="btn btn-success btn-sm" id="btn-edit-kategori" title="Edit"><i class="fas fa-edit "></i></button>
+                                            </form>
+                                            <form action="/Admin/Kategori/<?= $key['id']; ?>" method="POST" class="d-inline">
+                                                <?= csrf_field(); ?>
+                                                <input type="hidden" name="_method" value="PATCH">
+                                                <input type="hidden" name="status" value="arsip">
                                                 <button type="submit" class="btn btn-secondary btn-sm" id="btn-archive-kategori" title="Arsip" onclick="return confirm('Apakah anda ingin mengarsipkan kategori <?= $key['nama']; ?> ?')"><i class="fas fa-archive "></i></button>
                                             </form>
-                                            <form action="/Admin/kategori/deleteKategori/<?= $key['id']; ?>" method="POST" class="d-inline">
+                                            <form action="/Admin/Kategori/<?= $key['id']; ?>" method="post" class="d-inline">
+                                                <?= csrf_field(); ?>
+                                                <input type="hidden" name="_method" value="DELETE">
                                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin menghapus kategori <?= $key['nama']; ?> ?')" title="Hapus"><i class="fas fa-trash"></i></button>
                                             </form>
                                         </td>
@@ -92,9 +112,5 @@ echo $this->section('content');
 
 <!-- Modal Add Kategori -->
 <?= view('modal/addKategori') ?>
-
-<!-- Modal Edit Kategori -->
-<?= view('modal/editKategori') ?>
-<!-- End of Modal Edit Kategori -->
 
 <?= $this->endSection(); ?>

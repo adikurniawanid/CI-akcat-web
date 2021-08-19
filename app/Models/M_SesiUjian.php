@@ -50,4 +50,9 @@ class M_SesiUjian extends Model
     {
         return $this->db->query("call recovery_sesi_ujian('$id_param')");
     }
+
+    public function get_detail_edit_sesi_ujian($id_param)
+    {
+        return $this->db->query("call get_detail_edit_sesi_ujian('$id_param')")->getresultArray();
+    }
 }

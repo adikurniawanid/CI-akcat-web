@@ -1,5 +1,5 @@
 <?php
-echo $this->extend('/templates/v_layout');
+echo $this->extend('/templates/admin/v_layout');
 echo $this->section('content');
 ?>
 <!-- Begin Page Content -->
@@ -13,7 +13,7 @@ echo $this->section('content');
 
     <div class="card border-left-primary">
         <div class="card-body ">
-            <a href="<?= base_url('Admin/Pertanyaan'); ?>" class="btn btn-primary btn-icon-split mb-3">
+            <a href="<?= base_url('Admin/Pertanyaan') ?>" class="btn btn-primary btn-icon-split mb-3">
                 <span class="icon text-white-50">
                     <i class=" fa fa-arrow-left"></i>
                 </span>
@@ -52,13 +52,34 @@ echo $this->section('content');
                                     <tr>
                                         <td><?= $no; ?></td>
                                         <td><?= $key['kode'] ?></td>
-                                        <td><?= $key['pertanyaan'] ?></td>
+                                        <td>
+                                            <span style="
+  display:inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 50ch;">
+                                                <?= $key['pertanyaan'] ?>
+                                            </span>
+                                        </td>
                                         <td><?= $key['kategori']; ?></td>
                                         <td>
-                                            <form action="<?= base_url('Admin/pertanyaan/recoveryPertanyaan/' . $key['id']); ?>" method="POST" class="d-inline">
+                                            <!-- <form action="<?= base_url('Admin/pertanyaan/recoveryPertanyaan/' . $key['id']); ?>" method="POST" class="d-inline">
                                                 <button type="submit" class="btn btn-secondary btn-sm" id="btn-archive-kategori" title="Pulih" onclick="return confirm('Apakah anda ingin memulihkan arsip pertanyaan dengan kode : <?= $key['kode']; ?> ?')"><i class="fas fa-archive "></i></button>
                                             </form>
                                             <form action="<?= base_url('Admin/pertanyaan/deletePertanyaanArsip/' . $key['id']); ?>" method="POST" class="d-inline">
+                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus arsip pertanyaan dengan kode :  <?= $key['kode']; ?> ?')" title="Hapus"><i class="fas fa-trash"></i></button>
+                                            </form> -->
+
+                                            <form action="/Admin/Pertanyaan/<?= $key['id']; ?>" method="POST" class="d-inline">
+                                                <?= csrf_field(); ?>
+                                                <input type="hidden" name="_method" value="PATCH">
+                                                <input type="hidden" name="status" value="recovery">
+                                                <button type="submit" class="btn btn-secondary btn-sm" id="btn-archive-kategori" title="Pulih" onclick="return confirm('Apakah anda ingin memulihkan arsip pertanyaan dengan kode : <?= $key['kode']; ?> ?')"><i class="fas fa-archive "></i></button>
+                                            </form>
+                                            <form action="/Admin/Pertanyaan/<?= $key['id']; ?>" method="POST" class="d-inline">
+                                                <?= csrf_field(); ?>
+                                                <input type="hidden" name="_method" value="DELETE">
                                                 <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin ingin menghapus arsip pertanyaan dengan kode :  <?= $key['kode']; ?> ?')" title="Hapus"><i class="fas fa-trash"></i></button>
                                             </form>
                                         </td>

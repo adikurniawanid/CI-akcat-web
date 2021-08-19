@@ -31,11 +31,6 @@ class M_Pertanyaan extends Model
         return $this->db->query("call arsip_pertanyaan('$id_param')");
     }
 
-    public function recovery_pertanyaan($id_param)
-    {
-        return $this->db->query("call recovery_pertanyaan('$id_param')");
-    }
-
     public function get_pertanyaan_kode($id_param)
     {
         return $this->db->query("call get_pertanyaan_kode('$id_param')")->getresultArray();
@@ -77,5 +72,10 @@ class M_Pertanyaan extends Model
     public function get_pertanyaan_detail_by_id($id_param)
     {
         return $this->db->query("call get_pertanyaan_detail_by_id('$id_param')")->getresultArray();
+    }
+
+    public function get_detail_edit_pertanyaan($id_param)
+    {
+        return $this->db->query("call get_detail_edit_pertanyaan('$id_param')")->getresultArray();
     }
 }

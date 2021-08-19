@@ -15,7 +15,7 @@
                     </div>
                     <div class="form-group">
                         <label>Username</label>
-                        <input pattern="[a-z0-9._%+-].{8,}" maxlength="20" autocomplete="off" class="form-control" required type="text" name="username_param" placeholder="Masukkan username (minimal 8 karakter)..." />
+                        <input pattern="[a-z0-9].{8,}" maxlength="20" autocomplete="off" class="form-control" required type="text" name="username_param" placeholder="Masukkan username (minimal 8 karakter)..." />
                     </div>
                     <div class="form-group">
                         <label>Alamat Email</label>

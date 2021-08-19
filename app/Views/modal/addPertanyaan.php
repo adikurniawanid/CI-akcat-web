@@ -8,7 +8,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <form method="POST" enctype="multipart/form-data" action="<?= base_url('Admin/Pertanyaan/addPertanyaan') ?>">
+                <form method="POST" enctype="multipart/form-data" action="<?= base_url('Admin/Pertanyaan') ?>">
+                    <?= csrf_field(); ?>
                     <div class="form-group">
                         <label>Kategori Soal</label>
                         <select class="custom-select" id="kategori_id_param" name="kategori_id_param" required>

@@ -22,7 +22,7 @@ class Register extends BaseController
             'judul' => 'Register',
             'jenisKelamin' => $this->modelPeserta->get_jenis_kelamin_list()
         ];
-        echo view('templates/v_header', $data);
+        echo view('templates/admin/v_header', $data);
         echo view('auth/v_register');
     }
 
