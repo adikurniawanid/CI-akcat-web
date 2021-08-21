@@ -16,13 +16,16 @@ class Pertanyaan extends BaseController
 
     public function index($id_param = null)
     {
+        if (!isset($_SESSION['user_id'])) {
+            return redirect()->to(base_url('Auth/Login'));
+        }
+
         if (is_null($id_param) or $id_param == '') {
             $data = [
                 'judul' => 'Pertanyaan',
                 'pertanyaan' => $this->model->get_pertanyaan_list(),
                 'kategori_list' => $this->modelKategori->get_kategori_list()
             ];
-
             return view('admin/v_pertanyaan', $data);
         } else {
             $data = [

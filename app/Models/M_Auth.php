@@ -33,7 +33,7 @@ class M_Auth extends Model
 
     public function get_user_information($id_param)
     {
-        return $this->db->query("call get_user_information('$id_param')")->getResultArray();
+        return $this->db->query("call get_user_information('$id_param')")->getRowArray();
     }
 
     public function get_user_status($email_username_param)
@@ -64,5 +64,10 @@ class M_Auth extends Model
     public function get_jumlah_sesi()
     {
         return $this->db->query("call get_jumlah_sesi_ujian()")->getRow()->RESULT;
+    }
+
+    public function get_user_id_by_username_email($email_username_param)
+    {
+        return $this->db->query("call get_user_id_by_username_email('$email_username_param')")->getRow()->RESULT;
     }
 }

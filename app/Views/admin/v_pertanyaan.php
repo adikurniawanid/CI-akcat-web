@@ -38,7 +38,8 @@ echo $this->section('content');
                             <thead class="text-center">
                                 <tr>
                                     <th class="col-1">No</th>
-                                    <th class="col-1 bg-primary text-white">Kode Soal</th>
+                                    <!-- <th class="col-1 bg-primary text-white">Kode Soal</th> -->
+                                    <th class="col-1">Kode Soal</th>
                                     <th class="col-6">Pertanyaan</th>
                                     <th class="col-2">Kategori</th>
                                     <th class="col-2">Aksi</th>
@@ -47,7 +48,8 @@ echo $this->section('content');
                             <tfoot class="text-center">
                                 <tr>
                                     <th>No</th>
-                                    <th class="bg-primary text-white">Kode Soal</th>
+                                    <!-- <th class="bg-primary text-white">Kode Soal</th> -->
+                                    <th>Kode Soal</th>
                                     <th>Pertanyaan</th>
                                     <th>Kategori</th>
                                     <th>Aksi</th>
@@ -60,6 +62,7 @@ echo $this->section('content');
                                     <tr>
                                         <td><?= $no; ?></td>
                                         <td class="bg-primary"><a href=" /Admin/Pertanyaan/<?= $key['id']; ?>" class="text-white "><?= $key['kode'] ?></a></td>
+                                        <!-- <td><?= $key['kode'] ?></td> -->
                                         <td>
                                             <span style="
   display:inline-block;

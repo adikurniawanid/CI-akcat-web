@@ -28,7 +28,7 @@ foreach ($pertanyaan as $row) : $no++; ?>
                         <div class="form-group">
                             <hr>
                             <label>Pertanyaan</label>
-                            <textarea required class="form-control" type="text" name="pertanyaan_param" placeholder="Masukkan pertanyaan..." /><?= $row['pertanyaan'] ?></textarea>
+                            <textarea class="form-control " required type="text" name="pertanyaan_param" placeholder="Masukkan pertanyaan..." /><?= $row['pertanyaan'] ?></textarea>
                         </div>
                         <div class="form-group">
                             <hr>

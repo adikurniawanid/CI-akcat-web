@@ -17,6 +17,11 @@ class Kategori extends BaseController
 
     public function index($id_param = null)
     {
+
+        if (!isset($_SESSION['user_id'])) {
+            return redirect()->to(base_url('Auth/Login'));
+        }
+
         if (is_null($id_param) or $id_param == '') {
             $data = [
                 'judul' => 'Kategori Soal',

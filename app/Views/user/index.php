@@ -3,120 +3,93 @@ echo $this->extend('/templates/user/v_layout');
 echo $this->section('content');
 ?>
 
-
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
     <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800"><?= $judul; ?></h1>
 
+    <!-- Validation -->
+    <?= view('validation/flashData') ?>
 
-    <?php
-    $password = 'user';
-    echo $password;
-    $hash = password_hash($password, PASSWORD_BCRYPT);
-    echo $hash;
-    d($hash);
-    echo strlen($hash);
-    echo "<br>";
+    <div class="card border-left-primary">
+        <div class="card-body">
+            <a data-toggle="modal" data-target="#modalAddKategori" class="btn btn-primary btn-icon-split mb-3">
+                <span class="icon text-white-50">
+                    <i class="fa fa-plus"></i>
+                </span>
+                <span class="text">Masukan Kode Sesi</span>
+            </a>
 
-    if (password_verify($password, $hash)) {
-        echo 'The password is valid';
-    } else {
-        echo 'Invalid password';
-    }
-    ?>
-
-    <!-- Content Row -->
-    <div class="row">
-
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Jumlah Kategori</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">10 Kategori</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-layer-group fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
+            <!-- DataTales -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Daftar Sesi Ujian</h6>
                 </div>
-            </div>
-        </div>
+                <div class="row p-3">
+                    <?php
+                    $no = 1;
+                    foreach ($sesi as $key) : ?>
+                        <div class="card-body col-6">
+                            <div class="card border-primary text-gray-900">
+                                <input type="hidden" name="id" value="<?= $key['id']; ?>">
 
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Jumlah Pertanyaan</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">1000 Pertanyaan</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-question-circle fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+                                <div class="card-header border-primary bg-primary text-white">
 
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Tasks
-                            </div>
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">50%</div>
+                                    <i class="fas fa-file-alt" title="Sesi Ujian"></i> <?= $key['nama_ujian']; ?>
                                 </div>
-                                <div class="col">
-                                    <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
+                                <div class="card-body">
+                                    <p class="card-text">
+                                    <table>
+                                        <tr>
+                                            <td> <i class="fas fa-map-marker-alt" title="Sesi Ujian"> </i> Lokasi</td>
+                                            <td> : </td>
+                                            <td><?= $key['tempat_ujian']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td> <i class="fas fa-calendar-alt" title="Waktu Mulai"></i> Waktu Mulai</td>
+                                            <td> : </td>
+                                            <td><?= $key['waktu_mulai']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td> <i class="fas fa-calendar-alt" title="Waktu Selesai"></i> Waktu Selesai</td>
+                                            <td> : </td>
+                                            <td><?= $key['waktu_selesai']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td> <i class="fas fa-clock" title="Durasi"></i> Durasi</td>
+                                            <td>:</td>
+                                            <td><?= $key['durasi']; ?> Menit</td>
+                                        </tr>
+                                        <tr>
+                                            <td> <i class="fas fa-fingerprint" title="Kode Sesi"></i></i> Kode Sesi</td>
+                                            <td> : </td>
+                                            <td><?= $key['kode']; ?></td>
+                                        </tr>
+                                    </table>
+                                    <a href="Exam" class="btn btn-primary btn-icon-split mb-3 float-right">
+                                        <span class="icon text-white-50">
+                                            <i class="fa fa-sign-in-alt"></i>
+                                        </span>
+                                        <span class="text">Masuk Sesi</span>
+                                    </a>
                                 </div>
                             </div>
                         </div>
-                        <div class="col-auto">
-                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
+                    <?php $no++;
+                    endforeach ?>
                 </div>
             </div>
-        </div>
-
-        <!-- Pending Requests Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                Pending Requests</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- End of Data Table -->
         </div>
     </div>
-
-    <!-- Content Row -->
-
 </div>
 <!-- /.container-fluid -->
 
 </div>
 <!-- End of Main Content -->
+
+<!-- Modal Add Kategori -->
+<?= view('modal/joinSesi') ?>
+
 <?= $this->endSection(); ?>

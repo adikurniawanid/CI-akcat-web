@@ -14,6 +14,10 @@ class Home extends BaseController
 
     public function index()
     {
+        if (!isset($_SESSION['user_id'])) {
+            return redirect()->to(base_url('Auth/Login'));
+        }
+
         $data = [
             'judul' => 'Dashboard',
             'jumlahPeserta' => $this->model->get_jumlah_peserta(),
@@ -21,7 +25,6 @@ class Home extends BaseController
             'jumlahPertanyaan' => $this->model->get_jumlah_pertanyaan(),
             'jumlahKategori' => $this->model->get_jumlah_kategori(),
         ];
-
         return view('admin/index', $data);
     }
 }

@@ -23,7 +23,7 @@
                     <div class="form-group">
                         <hr>
                         <label>Pertanyaan</label>
-                        <textarea required class="form-control" type="text" name="pertanyaan_param" placeholder="Masukkan pertanyaan..." /></textarea>
+                        <textarea required class="form-control ckeditor" type="text" name="pertanyaan_param" placeholder="Masukkan pertanyaan..." /></textarea>
                     </div>
                     <div class="form-group">
                         <hr>

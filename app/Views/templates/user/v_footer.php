@@ -35,6 +35,8 @@
 
 <!-- Page level custom scripts -->
 <script src="<?= base_url('assets/js/demo/datatables-demo.js') ?>"></script>
+<!-- CKEDITOR -->
+<script src="<?= base_url('assets/'); ?>ckeditor/ckeditor.js"></script>
 
 <script>
     $(document).ready(function() {

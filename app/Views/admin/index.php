@@ -77,19 +77,12 @@ echo $this->section('content');
     <!-- Content Row -->
 
     <?php
-    // $password = 'user';
-    // echo $password;
-    // $hash = password_hash($password, PASSWORD_BCRYPT);
-    // echo $hash;
-    // d($hash);
-    // echo strlen($hash);
-    // echo "<br>";
-
-    // if (password_verify($password, $hash)) {
-    //     echo 'The password is valid';
-    // } else {
-    //     echo 'Invalid password';
-    // }
+    d(session()->get('user_id'));
+    d(session()->get('nama'));
+    d(session()->get('email'));
+    d(session()->get('jenisKelaminId'));
+    d(session()->get('noHp'));
+    d(session()->get('instansi'));
     ?>
 
 

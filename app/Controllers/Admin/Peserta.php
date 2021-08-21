@@ -14,6 +14,10 @@ class Peserta extends BaseController
 
     public function index()
     {
+        if (!isset($_SESSION['user_id'])) {
+            return redirect()->to(base_url('Auth/Login'));
+        }
+
         $data = [
             'judul' => 'Peserta',
             'peserta' => $this->model->get_peserta_list(),
@@ -125,18 +129,20 @@ class Peserta extends BaseController
                 ],
                 'username_param' => [
                     'label' => 'Username',
-                    'rules' => 'required|max_length[50]',
+                    'rules' => 'required|max_length[50]|is_unique[user.username]',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong.',
-                        'max_length' => '{field} tidak boleh lebih dari 20 karakter.'
+                        'max_length' => '{field} tidak boleh lebih dari 20 karakter.',
+                        'is_unique' => '{field} telah terdaftar, silahkan gunakan {field} lain.'
                     ]
                 ],
                 'email_param' => [
                     'label' => 'Email',
-                    'rules' => 'required|max_length[50]',
+                    'rules' => 'required|max_length[50]|is_unique[user.email]',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong.',
-                        'max_length' => '{field} tidak boleh lebih dari 50 karakter.'
+                        'max_length' => '{field} tidak boleh lebih dari 50 karakter.',
+                        'is_unique' => '{field} telah terdaftar, silahkan gunakan {field} lain.'
                     ]
                 ],
                 'password_param' => [
@@ -192,8 +198,16 @@ class Peserta extends BaseController
         }
     }
 
-    public function editPeserta()
+    public function editPeserta($id_param)
     {
+        $data = [
+            'judul' => 'Edit Peserta',
+            'peserta' => $this->model->get_detail_edit_peserta($id_param),
+            'jenisKelamin' => $this->model->get_jenis_kelamin_list()
+        ];
+
+        echo view('admin/v_pesertaEdit', $data);
+
         if (isset($_POST['buttonEditPeserta'])) {
             $val = $this->validate([
                 'nama_param' => [
@@ -211,7 +225,7 @@ class Peserta extends BaseController
                     'rules' => 'required|max_length[18]',
                     'errors' => [
                         'required' => '{field} tidak boleh kosong.',
-                        'max_length' => '{field} tidak boleh lebih dari 18 angka.'
+                        'max_length' => '{field} tidak boleh lebih dari 18 angka.',
                     ]
                 ],
                 'instansi_param' => [
@@ -274,8 +288,6 @@ class Peserta extends BaseController
                     return redirect()->to(base_url('Admin/Peserta'));
                 }
             }
-        } else {
-            return redirect()->to(base_url('Admin/Peserta'));
         }
     }
 }

@@ -15,6 +15,10 @@ class Login extends BaseController
 
 	public function index()
 	{
+		if (isset($_SESSION['user_id'])) {
+			return redirect()->to(base_url('Admin'));
+		}
+		session()->destroy();
 		$data = [
 			'judul' => 'Login'
 		];
@@ -82,10 +86,18 @@ class Login extends BaseController
 							$success = false;
 						}
 
+						session()->set('user_id', $this->model->get_user_id_by_username_email($data['email_username_param']));
+						$user_information = $this->model->get_user_information($this->session->get('user_id'));
+						session()->set('nama', $user_information['nama']);
+						session()->set('email', $user_information['email']);
+						session()->set('jenisKelaminId', $user_information['jenis_kelamin_id']);
+						session()->set('noHp', $user_information['no_hp']);
+						session()->set('instansi', $user_information['instansi']);
+
 						if ($success && $role == 1) {
 							return redirect()->to(base_url('Admin'));
 						} elseif ($success && $role == 2) {
-							return redirect()->to(base_url('exam'));
+							return redirect()->to(base_url('user'));
 						} else {
 							$message = 'Password yang diinput salah';
 							session()->setFlashData('err', $message);
@@ -105,5 +117,11 @@ class Login extends BaseController
 		} else {
 			return redirect()->to(base_url('Auth/Login'));
 		}
+	}
+
+	public function logout()
+	{
+		session()->destroy();
+		return redirect()->to(base_url('Auth/Login'));
 	}
 }

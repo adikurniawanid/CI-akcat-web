@@ -161,7 +161,7 @@
 				<!-- Nav Item - User Information -->
 				<li class="nav-item dropdown no-arrow">
 					<a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-						<span class="mr-2 d-none d-lg-inline text-gray-600 small">Adi Kurniawan</span>
+						<span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= session()->get('nama'); ?></span>
 						<img class="img-profile rounded-circle" src="<?= base_url('assets/img/undraw_profile.svg') ?>">
 					</a>
 					<!-- Dropdown - User Information -->
@@ -199,10 +199,10 @@
 							<span aria-hidden="true">×</span>
 						</button>
 					</div>
-					<div class="modal-body">Pilij "Logout" dibawah untuk mengakhiri sesi.</div>
+					<div class="modal-body">Pilih "Logout" dibawah untuk mengakhiri sesi.</div>
 					<div class="modal-footer">
 						<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-						<a class="btn btn-primary" href="<?= base_url('/Auth/Login') ?>">Logout</a>
+						<a class="btn btn-primary" href="<?= base_url('/Auth/Login/logout') ?>">Logout</a>
 					</div>
 				</div>
 			</div>

@@ -19,11 +19,12 @@
 									</div>
 
 									<form method="POST" class="user" enctype="multipart/form-data" action="<?= base_url('Auth/Login/Login') ?>">
+										<?php csrf_field() ?>
 										<!-- <form class="user" action="<?= 'Auth/Login/Login' ?>"> -->
 										<?= view('validation/flashData') ?>
 										<div class="form-group">
 											<label for="email_username_param">Email atau Username</label>
-											<input type="text" class="form-control form-control-user" name="email_username_param" id="email_username_param" placeholder="Masukan email atau username...">
+											<input value="akdev2101" type="text" class="form-control form-control-user" name="email_username_param" id="email_username_param" placeholder="Masukan email atau username...">
 										</div>
 										<!-- <div class="form-group">
 											<label for="kodeSesi">Kode Sesi</label>
@@ -31,7 +32,7 @@
 										</div> -->
 										<div class="form-group">
 											<label for="password_param">Kata Sandi</label>
-											<input type="password" class="form-control form-control-user" id="password_param" name="password_param" placeholder="Masukan kata sandi...">
+											<input value="akdev2101" type="password" class="form-control form-control-user" id="password_param" name="password_param" placeholder="Masukan kata sandi...">
 										</div>
 										<!-- <div class="form-group">
 											<div class="custom-control custom-checkbox small">
@@ -41,11 +42,11 @@
 										</div> -->
 										<br>
 										<button type="submit" name="buttonLogin" class="btn btn-primary btn-user btn-block">Masuk</button>
-										<a href="<?= base_url('Admin') ?>" class="btn btn-danger btn-user btn-block">
-											Admin
-										</a>
 										<a href="<?= base_url('Exam') ?>" class="btn btn-danger btn-user btn-block">
-											Exam
+											Exam tanpa login
+										</a>
+										<a href="<?= base_url('User') ?>" class="btn btn-danger btn-user btn-block">
+											user tanpa login
 										</a>
 										<!-- <a href="<?= base_url('Auth/Login/Login') ?>" class="btn btn-primary btn-user btn-block">
 											Masuk

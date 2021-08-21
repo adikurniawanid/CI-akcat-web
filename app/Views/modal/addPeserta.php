@@ -11,7 +11,7 @@
                 <form method="POST" enctype="multipart/form-data" action="<?= base_url('Admin/Peserta/addPeserta') ?>">
                     <div class="form-group">
                         <label>Nama Lengkap</label>
-                        <input autocomplete="off" class="form-control" type="text" name="nama_param" placeholder="Masukkan nama lengkap..." />
+                        <input required autocomplete="off" class="form-control" type="text" name="nama_param" placeholder="Masukkan nama lengkap..." />
                     </div>
                     <div class="form-group">
                         <label>Username</label>
@@ -54,7 +54,7 @@
 
                     <div class="form-group">
                         <label>Kata Sandi</label>
-                        <input pattern="[a-z0-9._%+-].{8,}" autocomplete="off" class="form-control" required type="password" name="password_param" placeholder="Masukkan kata sandi (minimal 8 karakter)..." />
+                        <input autocomplete="off" class="form-control" required type="password" name="password_param" placeholder="Masukkan kata sandi (minimal 8 karakter)..." />
                     </div>
 
                     <div class="modal-footer">

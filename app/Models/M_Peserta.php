@@ -83,4 +83,9 @@ class M_Peserta extends Model
     {
         return $this->db->query('call get_jenis_kelamin_list()')->getResultArray();
     }
+
+    public function get_detail_edit_peserta($id_param)
+    {
+        return $this->db->query("call get_detail_edit_peserta('$id_param')")->getresultArray();
+    }
 }

@@ -6,7 +6,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url('Admin/Dashboard'); ?>">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= site_url('Admin/Dashboard'); ?>">
                 <div class=" sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-file-alt"></i>
                 </div>
@@ -18,7 +18,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('Admin/Dashboard'); ?>">
+                <a class="nav-link" href="<?= site_url('Admin/Dashboard'); ?>">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -33,7 +33,7 @@
 
             <!-- Nav Item - Kategori -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('Admin/Kategori'); ?>">
+                <a class="nav-link" href="<?= site_url('Admin/Kategori'); ?>">
                     <i class="fas fa-fw fa-layer-group"></i>
                     <span>Kategori Soal</span></a>
             </li>
@@ -42,45 +42,11 @@
 
             <!-- Nav Item - Pertanyaan -->
             <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('Admin/Pertanyaan'); ?>">
+                <a class="nav-link" href="<?= site_url('Admin/Pertanyaan'); ?>">
                     <i class="fas fa-fw fa-question-circle"></i>
                     <span>Pertanyaan</span></a>
             </li>
 
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <!-- <div class="sidebar-heading">
-                Sesi Ujian
-            </div> -->
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('Admin/SesiUjian'); ?>">
-                    <i class="fas fa-fw fa-calendar-alt"></i>
-                    <span>Sesi Ujian</span></a>
-            </li>
-            <!-- Nav Item - Pages Collapse Menu -->
-
-
-
-            <hr class="sidebar-divider">
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('Admin/Peserta'); ?>">
-                    <i class="fas fa-fw fa-user-circle"></i>
-                    <span>Peserta</span></a>
-            </li>
-
-            <hr class="sidebar-divider">
-
-            <li class="nav-item">
-                <a class="nav-link" href="<?= base_url('Admin/NilaiUjian'); ?>">
-                    <i class="fas fa-fw fa-chart-bar"></i>
-                    <span>Nilai Ujian</span></a>
-            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">

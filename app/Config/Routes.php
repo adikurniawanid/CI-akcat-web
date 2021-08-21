@@ -47,6 +47,7 @@ $routes->patch('/Admin/Kategori/(:any)', 'Admin/Kategori::arsipKategori/$1');
 $routes->get('/Admin/Pertanyaan', 'Admin/Pertanyaan::index');
 $routes->get('/Admin/Arsip/Pertanyaan', 'Admin/Pertanyaan::arsip');
 $routes->get('/Admin/Pertanyaan/(:any)', 'Admin/Pertanyaan::index/$1');
+// $routes->get('/Admin/Pertanyaan/(:any)', 'Admin/Pertanyaan::index');
 $routes->post('/Admin/Pertanyaan', 'Admin/Pertanyaan::addPertanyaan');
 $routes->put('/Admin/Pertanyaan/(:any)', 'Admin/Pertanyaan::editPertanyaan/$1');
 $routes->delete('/Admin/Pertanyaan/(:any)', 'Admin/Pertanyaan::deletePertanyaan/$1');
@@ -64,9 +65,9 @@ $routes->patch('/Admin/SesiUjian/(:any)', 'Admin/SesiUjian::arsipSesiUjian/$1');
 // Peserta
 $routes->get('/Admin/Peserta', 'Admin/Peserta::index');
 $routes->get('/Admin/Arsip/Peserta', 'Admin/Peserta::arsip');
-// $routes->get('/Admin/Peserta/(:any)', 'Admin/Peserta::index/$1');
+$routes->get('/Admin/Peserta/(:any)', 'Admin/Peserta::index');
 $routes->post('/Admin/Peserta', 'Admin/Peserta::addPeserta');
-$routes->put('/Admin/Peserta', 'Admin/Peserta::editPeserta');
+$routes->put('/Admin/Peserta/(:any)', 'Admin/Peserta::editPeserta/$1');
 $routes->delete('/Admin/Peserta/(:any)', 'Admin/Peserta::deletePeserta/$1');
 $routes->patch('/Admin/Peserta/(:any)', 'Admin/Peserta::arsipPeserta/$1');
 

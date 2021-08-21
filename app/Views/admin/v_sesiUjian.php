@@ -73,21 +73,33 @@ echo $this->section('content');
                                         <td>
                                             <form action="/Admin/SesiUjian/<?= $key['id']; ?>" method="POST" class="d-inline">
                                                 <?= csrf_field(); ?>
-                                                <input type="hidden" name="_method" value="PUT">
-                                                <input type="hidden" name="id" value="<?= $key['id']; ?>">
-                                                <button type="submit" class="btn btn-success btn-sm" id="btn-edit-kategori" title="Edit"><i class="fas fa-edit "></i></button>
+                                                <input type="hidden" name="_method" value="PATCH">
+                                                <input type="hidden" name="status" value="arsip">
+                                                <button type="submit" class="btn btn-success btn-sm" title="Arsip" onclick="return confirm('Apakah anda ingin mengarsipkan sesi <?= $key['nama_ujian']; ?> ?')"><i class="fas fa-archive "></i></button>
                                             </form>
                                             <form action="/Admin/SesiUjian/<?= $key['id']; ?>" method="POST" class="d-inline">
                                                 <?= csrf_field(); ?>
-                                                <input type="hidden" name="_method" value="PATCH">
-                                                <input type="hidden" name="status" value="arsip">
-                                                <button type="submit" class="btn btn-secondary btn-sm" title="Arsip" onclick="return confirm('Apakah anda ingin mengarsipkan sesi <?= $key['nama_ujian']; ?> ?')"><i class="fas fa-archive "></i></button>
+                                                <input type="hidden" name="_method" value="PUT">
+                                                <input type="hidden" name="id" value="<?= $key['id']; ?>">
+                                                <button type="submit" class="btn btn-warning btn-sm" id="btn-edit-kategori" title="Edit"><i class="fas fa-edit "></i></button>
                                             </form>
-                                            <form action="/Admin/SesiUjian/<?= $key['id']; ?>" method="post" class="d-inline">
-                                                <?= csrf_field(); ?>
-                                                <input type="hidden" name="_method" value="DELETE">
-                                                <button type="submit" class="btn btn-danger btn-sm" onclick="return confirm('Apakah anda yakin menghapus sesi <?= $key['nama_ujian']; ?> ?')" title="Hapus"><i class="fas fa-trash"></i></button>
-                                            </form>
+                                            <div class="dropdown no-arrow d-inline-block">
+                                                <button id="moreDropdown" type="submit" class="btn btn-secondary btn-sm" title="More" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-caret-square-down"></i></button>
+                                                <!-- Dropdown - User Information -->
+                                                <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in" aria-labelledby="moreDropdown">
+                                                    <form class="dropdown-item" action="/Admin/SesiUjian/<?= $key['id']; ?>" method="post" class="d-inline">
+                                                        <?= csrf_field(); ?>
+                                                        <input type="hidden" name="_method" value="PATCH">
+                                                        <input type="hidden" name="status" value="arsip">
+                                                        <button type="submit" style="border: none; background-color: transparent;" onclick="return confirm('Apakah anda ingin mengarsipkan sesi <?= $key['nama_ujian']; ?> ?')" title="Hapus"><i class="fas fa-archive fa-sm fa-fw mr-2 text-gray-400"></i>Arsip</button>
+                                                    </form>
+                                                    <form class="dropdown-item" action="/Admin/SesiUjian/<?= $key['id']; ?>" method="post" class="d-inline">
+                                                        <?= csrf_field(); ?>
+                                                        <input type="hidden" name="_method" value="DELETE">
+                                                        <button type="submit" style="border: none; background-color: transparent;" onclick="return confirm('Apakah anda yakin menghapus sesi <?= $key['nama_ujian']; ?> ?')" title="Hapus"><i class="fas fa-trash fa-sm fa-fw mr-2 text-gray-400"></i>Hapus</button>
+                                                    </form>
+                                                </div>
+                                            </div>
                                         </td>
                                     </tr>
                                 <?php $no++;

@@ -27,7 +27,7 @@ echo $this->section('content');
                     <h6 class="m-0 font-weight-bold text-primary">Kode Sesi : <?= $sesi[0]['kode'] ?></h6>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
+                    <div class="table">
                         <?= view('validation/flashData') ?>
                         <form method="POST" enctype="multipart/form-data" action="<?= base_url('Admin/SesiUjian/' . $sesi[0]['id']) ?>">
                             <?= csrf_field(); ?>

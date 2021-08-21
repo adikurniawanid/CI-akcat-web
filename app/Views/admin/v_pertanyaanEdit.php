@@ -25,7 +25,7 @@ echo $this->section('content');
                     <h6 class="m-0 font-weight-bold text-primary">Kode Pertanyaan : <?= $pertanyaan[0]['kode'] ?></h6>
                 </div>
                 <div class="card-body">
-                    <div class="table-responsive">
+                    <div class="table">
                         <?= view('validation/flashData') ?>
                         <form method="POST" enctype="multipart/form-data" action="<?= base_url('Admin/Pertanyaan/' . $pertanyaan[0]['id']) ?>">
                             <?= csrf_field(); ?>
@@ -44,31 +44,30 @@ echo $this->section('content');
                             <div class="form-group">
                                 <hr>
                                 <label>Pertanyaan</label>
-                                <textarea required class="form-control" type="text" name="pertanyaan_param" placeholder="Masukkan pertanyaan..." /><?= $pertanyaan[0]['pertanyaan'] ?></textarea>
+                                <textarea required class="form-control ckeditor" type="text" name="pertanyaan_param" placeholder="Masukkan pertanyaan..." /><?= $pertanyaan[0]['pertanyaan'] ?></textarea>
                             </div>
                             <div class="form-group">
                                 <hr>
-
-                                <!-- baru -->
-                                <?php
-                                if (is_null($pertanyaan[0]['gambar'])) {
-                                    $pertanyaan['gambar'] = "Tidak Ada File";
-                                }
-                                if (is_null($pertanyaan[0]['audio'])) {
-                                    $pertanyaan['audio'] = "Tidak Ada File";
-                                }
-                                ?>
                                 <div class="mb-3 pertanyaan row">
+                                    <!-- baru -->
+                                    <?php
+                                    if (is_null($pertanyaan[0]['gambar'])) {
+                                        $pertanyaan['gambar'] = "Tidak Ada File";
+                                    }
+                                    if (is_null($pertanyaan[0]['audio'])) {
+                                        $pertanyaan['audio'] = "Tidak Ada File";
+                                    }
+                                    ?>
                                     <div class="col-6">
                                         <label for="staticGambar" class="col-form-label">Gambar yang Tersimpan</label>
                                         <!-- <div class="col-sm-10"> -->
-                                        <input type="text" readonly class="form-control" id="staticGambar" value="<?= $pertanyaan[0]['gambar'] ?>">
+                                        <input type="text" readonly class="form-control" id="staticGambar" value="<?= $pertanyaan['gambar'] ?>">
                                         <!-- </div> -->
                                     </div>
                                     <div class="col-6">
                                         <label for="staticAudio" class="col-form-label">Audio yang Tersimpan</label>
                                         <!-- <div class="col-sm-10"> -->
-                                        <input type="text" readonly class="form-control" id="staticAudio" value="<?= $pertanyaan[0]['audio'] ?>">
+                                        <input type="text" readonly class="form-control" id="staticAudio" value="<?= $pertanyaan['audio'] ?>">
                                         <!-- </div> -->
                                     </div>
                                 </div>

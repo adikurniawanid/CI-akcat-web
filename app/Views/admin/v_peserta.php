@@ -66,7 +66,12 @@ echo $this->section('content');
                                         <td><?= $key['no_hp'] ?></td>
                                         <td><?= $key['instansi'] ?></td>
                                         <td>
-                                            <button type="button" data-toggle="modal" data-target="#modalEditPeserta<?= $key['id']; ?>" class="btn btn-success btn-sm" id="btn-edit-kategori" title="Edit"><i class="fas fa-edit "></i></button>
+                                            <form action="/Admin/Peserta/<?= $key['id']; ?>" method="POST" class="d-inline">
+                                                <?= csrf_field(); ?>
+                                                <input type="hidden" name="_method" value="PUT">
+                                                <input type="hidden" name="id" value="<?= $key['id']; ?>">
+                                                <button type="submit" class="btn btn-success btn-sm" id="btn-edit-peserta" title="Edit"><i class="fas fa-edit "></i></button>
+                                            </form>
                                             <form action="/Admin/Peserta/<?= $key['id']; ?>" method="POST" class="d-inline">
                                                 <?= csrf_field(); ?>
                                                 <input type="hidden" name="_method" value="PATCH">
@@ -98,8 +103,5 @@ echo $this->section('content');
 
 <!-- Modal Add Peserta -->
 <?= view('modal/addPeserta'); ?>
-
-<!-- Modal Edit Peserta -->
-<?= view('modal/editPeserta'); ?>
 
 <?= $this->endSection(); ?>
